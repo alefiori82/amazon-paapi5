@@ -12,7 +12,7 @@ Features
 * Object oriented interface for simple usage.
 * Get multiple products at once.
 * Use cache to save api calls
-* Ask for new features through the [issues](https://github.com/alefiori82/python-amazon-paapi5/issues) section.
+* Ask for new features through the [issues](https://github.com/alefiori82/amazon-paapi5/issues) section.
 
 Installation
 -------------
@@ -61,7 +61,7 @@ Use cache reader and writer
 Changelog
 -------------
 
-    Version 1.0.0
+    Version 0.1.0
         - First release
         - CacheReader and Write Reader
         
