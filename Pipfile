@@ -6,6 +6,8 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+ipython = "*"
+amightygirl-paapi5-python-sdk = "*"
 
 [requires]
 python_version = "3.6"

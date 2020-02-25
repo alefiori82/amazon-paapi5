@@ -18,8 +18,6 @@ from paapi5_python_sdk.get_variations_resource import GetVariationsResource
 from paapi5_python_sdk.get_browse_nodes_request import GetBrowseNodesRequest
 from paapi5_python_sdk.get_browse_nodes_resource import GetBrowseNodesResource
 
-
-
 from paapi5_python_sdk.item import Item
 
 
@@ -331,7 +329,7 @@ class AmazonAPI:
                 'item_count':item_count,
                 'condition':condition  }
                 )
-            print (cache_url)
+            #print (cache_url)
             
             if self.CacheReader:
                 cached_response_text = self.CacheReader(cache_url)

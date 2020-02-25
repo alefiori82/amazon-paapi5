@@ -14,7 +14,7 @@ setuptools.setup(
     license='GPL-3.0',
     url='https://github.com/alefiori82/python-amazon-paapi5',
     packages=setuptools.find_packages(),
-    install_requires=[],
+    install_requires=['amightygirl.paapi5-python-sdk'],
     classifiers=[
         'Programming Language :: Python',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
