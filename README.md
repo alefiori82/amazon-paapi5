@@ -63,7 +63,7 @@ Changelog
 
     Version 0.1.0
         - First release
-        - CacheReader and Write Reader
+        - CacheReader and WriteReader
         
 
     
