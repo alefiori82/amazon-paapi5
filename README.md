@@ -70,9 +70,12 @@ Use cache reader and writer
 Changelog
 -------------
 
+    Version 1.0.0
+        - CacheReader and CacheWriter
+        - Enable throttling
     Version 0.1.0
         - First release
-        - CacheReader and CacheWriter
+        
         
 
     
