@@ -8,8 +8,8 @@ Like Bottlenose you can use cache reader and writer to limit the number of api c
 [![License](https://img.shields.io/badge/License-GPL--3.0-%23e83633)](https://github.com/alefiori82/amazon-paapi5/blob/master/LICENSE)
 [![Support](https://img.shields.io/badge/Support-Good-brightgreen)](https://github.com/alefiori82/amazon-paapi5/issues)
 [![Amazon API](https://img.shields.io/badge/Amazon%20API-5.0-%23FD9B15)](https://webservices.amazon.com/paapi5/documentation/)
-![](https://github.com/alefiori82/amazon-paapi5/workflows/.github/workflows/pythonpublish.yml/badge.svg)
-![](https://github.com/alefiori82/amazon-paapi5/workflows/.github/workflows/build.yml/badge.svg)
+![](https://github.com/alefiori82/amazon-paapi5/workflows/.github/workflows/Upload%20Python%20Package/badge.svg)
+![](https://github.com/alefiori82/amazon-paapi5/workflows/.github/workflows/Build%20package/badge.svg)
 
 
 Features
