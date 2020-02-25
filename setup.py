@@ -12,7 +12,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     license='GPL-3.0',
-    url='https://github.com/alefiori82/python-amazon-paapi5',
+    url='https://github.com/alefiori82/amazon-paapi5',
     packages=setuptools.find_packages(),
     install_requires=['amightygirl.paapi5-python-sdk'],
     classifiers=[
