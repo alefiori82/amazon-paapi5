@@ -3,7 +3,7 @@ Amazon Product Advertising API 5.0 wrapper for Python
 A simple Python wrapper for the last version of the Amazon Product Advertising API. This module allows to get product information from Amazon using the official API in an easier way.
 Like Bottlenose you can use cache reader and writer to limit the number of api calls.
 
-![PyPI](https://img.shields.io/pypi/v/amazon-paapi5)
+[![PyPI](https://img.shields.io/pypi/v/amazon-paapi5)](https://pypi.org/project/amazon-paapi5/)
 [![Python](https://img.shields.io/github/pipenv/locked/python-version/alefiori82/amazon-paapi5/master?label=python)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-GPL--3.0-%23e83633)](https://github.com/alefiori82/amazon-paapi5/blob/master/LICENSE)
 [![Support](https://img.shields.io/badge/Support-Good-brightgreen)](https://github.com/alefiori82/amazon-paapi5/issues)
