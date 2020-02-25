@@ -37,12 +37,15 @@ Get multiple product information:
 
 
 Get variations
+
     products = amazon.get_variations(asin=['B01N5IB20Q','B01F9G43WU'])
 
 Get browse nodes
+
     browseNodes = amazon.get_browse_nodes(browse_node_ids=['473535031'])
 
 Use cache reader and writer
+
     DATA = []
     
     def custom_save_function(url, data): 
