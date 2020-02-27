@@ -20,6 +20,7 @@ import time, json, pickle, pprint
 from urllib.parse import quote as urllib_quote
 from .entities import AmazonProduct, AmazonBrowseNode
 from .constant import *
+from .exception import AmazonException
 
 
 
@@ -43,7 +44,7 @@ def parse_response_browse_node(browse_nodes_response_list):
     return mapped_response
 
 
-def parse_response(item_response_list):
+def parse_response_item(item_response_list):
     """
     The function parses GetItemsResponse and creates a dict of ASIN to Item object
     :param item_response_list: List of Items in GetItemsResponse
@@ -96,18 +97,6 @@ class AmazonAPI:
         try:
             if item_count > 10 or item_count < 1:
                 item_count = 10
-            search_items_request = SearchItemsRequest(
-                partner_tag=self.partner_tag,
-                partner_type=PartnerType.ASSOCIATES,
-                keywords=keywords,
-                search_index=search_index,
-                item_count=item_count,
-                resources=search_items_resource,
-                condition=condition,
-                browse_node_id=browseNode,
-                brand=brand,
-                sort_by=sortBy
-            )
             cache_url = self._cache_url(
                 {'partner_tag':self.partner_tag,
                 'partner_type':PartnerType.ASSOCIATES,
@@ -123,11 +112,25 @@ class AmazonAPI:
             if self.CacheReader:
                 cached_response_text = self.CacheReader(cache_url)
                 if cached_response_text is not None:
-                    return pickle.loads(cached_response_text)
+                    return {'data': pickle.loads(cached_response_text['data']), 'http_info': pickle.loads(cached_response_text['http_info'])}
+
+            search_items_request = SearchItemsRequest(
+                partner_tag=self.partner_tag,
+                partner_type=PartnerType.ASSOCIATES,
+                keywords=keywords,
+                search_index=search_index,
+                item_count=item_count,
+                resources=search_items_resource,
+                condition=condition,
+                browse_node_id=browseNode,
+                brand=brand,
+                sort_by=sortBy
+            )
+            
             
         except ValueError as exception:
-            print("Error in forming SearchItemsRequest: ", exception)
-            raise Exception(exception)
+            #print("Error in forming SearchItemsRequest: ", exception)
+            raise AmazonException("ValueError", exception)
 
         try:
             """ Sending request """
@@ -135,24 +138,23 @@ class AmazonAPI:
             if wait_time > 0:
                 time.sleep(wait_time)
             self.last_query_time = time.time()
-
+            resp_http = None
             if http_info:
                 response_with_http_info = self.default_api.search_items_with_http_info(search_items_request)
                 """ Parse response """
                 if response_with_http_info is not None:
                     response = response_with_http_info[0]
+                    resp_http = response_with_http_info[2]
                     if response.search_result is not None:
                         resp = [ AmazonProduct(item) for item in response.search_result.items]
                         if self.CacheWriter:
-                            self.CacheWriter(cache_url, pickle.dumps(resp))
-                        return response_with_http_info[2], resp
+                            self.CacheWriter(cache_url, pickle.dumps(resp), pickle.dumps(resp_http))
+                        return {'data': resp, 'http_info': resp_http}
                     if response.errors is not None:
-                        print(
-                            "\nPrinting Errors:\nPrinting First Error Object from list of Errors"
-                        )
-                        print("Error code", response.errors[0].code)
-                        print("Error message", response.errors[0].message)
-                        raise Exception(response.errors[0].message)
+                        #print("\nPrinting Errors:\nPrinting First Error Object from list of Errors")
+                        #print("Error code", response.errors[0].code)
+                        #print("Error message", response.errors[0].message)
+                        raise AmazonException(response.errors[0].code, response.errors[0].message)
 
             else:
                 if async_req:
@@ -164,32 +166,34 @@ class AmazonAPI:
                 if response.search_result is not None:
                     resp = [ AmazonProduct(item) for item in response.search_result.items]
                     if self.CacheWriter:
-                        self.CacheWriter(cache_url, pickle.dumps(resp))
-                    return resp
+                        self.CacheWriter(cache_url, pickle.dumps(resp), pickle.dumps(resp_http))
+                    return {'data': resp, 'http_info': resp_http}
                 if response.errors is not None:
-                    print("\nPrinting Errors:\nPrinting First Error Object from list of Errors")
-                    print("Error code", response.errors[0].code)
-                    print("Error message", response.errors[0].message)
-                    raise Exception(response.errors[0].message)    
+                    #print("\nPrinting Errors:\nPrinting First Error Object from list of Errors")
+                    #print("Error code", response.errors[0].code)
+                    #print("Error message", response.errors[0].message)
+                    raise AmazonException(response.errors[0].code, response.errors[0].message)
 
         except ApiException as exception:
-            print("Error calling PA-API 5.0!")
-            print("Status code:", exception.status)
-            print("Errors :", exception.body)
-            print("Request ID:", exception.headers["x-amzn-RequestId"])
-            raise Exception(exception)
+            #print("Error calling PA-API 5.0!")
+            #print("Status code:", exception.status)
+            #print("Errors :", exception.body)
+            #print("Request ID:", exception.headers["x-amzn-RequestId"])
+            raise AmazonException("ApiException", exception.body)
 
         except TypeError as exception:
-            print("TypeError :", exception)
-            raise Exception(exception)
+            #print("TypeError :", exception)
+            raise AmazonException("TypeError", exception)
 
         except ValueError as exception:
-            print("ValueError :", exception)
-            raise Exception(exception)
+            #print("ValueError :", exception)
+            raise AmazonException(ValueError, exception)
 
+        except AmazonException as exception:
+            raise AmazonException(exception.status, exception.reason)
+        
         except Exception as exception:
-            print("Exception :", exception)
-            raise Exception(exception)
+            raise AmazonException("General", exception)
 
 
     """ Choose resources you want from SearchItemsResource enum """
@@ -215,18 +219,7 @@ class AmazonAPI:
         try:
             if item_count > 10 or item_count < 1:
                 item_count = 10
-            search_items_request = SearchItemsRequest(
-                partner_tag=self.partner_tag,
-                partner_type=PartnerType.ASSOCIATES,
-                keywords=keywords,
-                search_index=search_index,
-                item_count=item_count,
-                resources=search_items_resource,
-                condition=condition,
-                browse_node_id=browseNode,
-                brand=brand,
-                sort_by=sortBy
-            )
+
             cache_url = self._cache_url(
                 {'partner_tag':self.partner_tag,
                 'partner_type':PartnerType.ASSOCIATES,
@@ -242,11 +235,25 @@ class AmazonAPI:
             if self.CacheReader:
                 cached_response_text = self.CacheReader(cache_url)
                 if cached_response_text is not None:
-                    return pickle.loads(cached_response_text)
+                    return {'data': pickle.loads(cached_response_text['data']), 'http_info': pickle.loads(cached_response_text['http_info'])}
+
+            search_items_request = SearchItemsRequest(
+                partner_tag=self.partner_tag,
+                partner_type=PartnerType.ASSOCIATES,
+                keywords=keywords,
+                search_index=search_index,
+                item_count=item_count,
+                resources=search_items_resource,
+                condition=condition,
+                browse_node_id=browseNode,
+                brand=brand,
+                sort_by=sortBy
+            )
+            
 
         except ValueError as exception:
-            print("Error in forming SearchItemsRequest: ", exception)
-            raise Exception(exception)
+            #print("Error in forming SearchItemsRequest: ", exception)
+            raise AmazonException("ValueError", exception)
 
         try:
             """ Sending request """
@@ -254,38 +261,41 @@ class AmazonAPI:
             if wait_time > 0:
                 time.sleep(wait_time)
             self.last_query_time = time.time()
-
+            resp_http = None
             response = default_api.search_items(search_items_request)
 
             """ Parse response """
             if response.search_result is not None:
                 resp = [ AmazonProduct(item) for item in response.search_result.items]
                 if self.CacheWriter:
-                    self.CacheWriter(cache_url, pickle.dumps(resp))
-                return resp
+                    self.CacheWriter(cache_url, pickle.dumps(resp), pickle.dumps(resp_http))
+                return {'data': resp, 'http_info': resp_http}
             if response.errors is not None:
-                print("\nPrinting Errors:\nPrinting First Error Object from list of Errors")
-                print("Error code", response.errors[0].code)
-                print("Error message", response.errors[0].message)
-                raise Exception(response.errors[0].message)
+                #print("\nPrinting Errors:\nPrinting First Error Object from list of Errors")
+                #print("Error code", response.errors[0].code)
+                #print("Error message", response.errors[0].message)
+                raise AmazonException(response.errors[0].code, response.errors[0].message)
 
         except ApiException as exception:
-            print("Error calling PA-API 5.0!")
-            print("Status code:", exception.status)
-            print("Errors :", exception.body)
-            print("Request ID:", exception.headers["x-amzn-RequestId"])
-            raise Exception(exception)
+            #print("Error calling PA-API 5.0!")
+            #print("Status code:", exception.status)
+            #print("Errors :", exception.body)
+            #print("Request ID:", exception.headers["x-amzn-RequestId"])
+            raise AmazonException("ApiException", exception.body)
 
         except TypeError as exception:
-            print("TypeError :", exception)
-            raise Exception(exception)
+            #print("TypeError :", exception)
+            raise AmazonException("TypeError", exception)
 
         except ValueError as exception:
-            print("ValueError :", exception)
-            raise Exception(exception)
+            #print("ValueError :", exception)
+            raise AmazonException(ValueError, exception)
 
+        except AmazonException as exception:
+            raise AmazonException(exception.status, exception.reason)
+        
         except Exception as exception:
-            print("Exception :", exception)
+            raise AmazonException("General", exception)
             raise Exception(exception)
 
     """ Choose resources you want from GetVariationsResource enum """
@@ -293,6 +303,21 @@ class AmazonAPI:
     def get_variations(self, asin, condition=None, languages_of_preference=None, currency_of_preference=None, async_req=False, http_info=False, get_variations_resources=VARIATION_RESOURCES):
         """ Forming request """
         try:
+            cache_url = self._cache_url(
+                {'partner_tag':self.partner_tag,
+                'partner_type':PartnerType.ASSOCIATES,
+                'asin':asin,
+                'languages_of_preference':languages_of_preference,
+                'condition': condition,
+                'currency_of_preference': currency_of_preference
+                }
+            )
+            
+            if self.CacheReader:
+                cached_response_text = self.CacheReader(cache_url)
+                if cached_response_text is not None:
+                    return {'data': pickle.loads(cached_response_text['data']), 'http_info': pickle.loads(cached_response_text['http_info'])}
+
             get_variations_request = GetVariationsRequest(
                 partner_tag=self.partner_tag,
                 partner_type=PartnerType.ASSOCIATES,
@@ -303,31 +328,17 @@ class AmazonAPI:
                 condition=condition,
                 currency_of_preference=currency_of_preference
             )
-            cache_url = self._cache_url(
-                {'partner_tag':self.partner_tag,
-                'partner_type':PartnerType.ASSOCIATES,
-                'asin':asin,
-                'languages_of_preference':languages_of_preference,
-                'condition': condition,
-                'currency_of_preference': currency_of_preference
-                }
-                )
             
-            if self.CacheReader:
-                cached_response_text = self.CacheReader(cache_url)
-                if cached_response_text is not None:
-                    return pickle.loads(cached_response_text)
-
         except ValueError as exception:
-            print("Error in forming GetVariationsRequest: ", exception)
-            raise Exception(exception)
+            #print("Error in forming GetVariationsRequest: ", exception)
+            raise AmazonException("ValueError", exception)
 
         try:
             wait_time = 1 / self.throttling - (time.time() - self.last_query_time)
             if wait_time > 0:
                 time.sleep(wait_time)
             self.last_query_time = time.time()
-
+            resp_http = None
             """ Sending request """
             if http_info:
                 response_with_http_info = self.default_api.get_variations_with_http_info(get_variations_request)
@@ -335,19 +346,18 @@ class AmazonAPI:
                 """ Parse response """
                 if response_with_http_info is not None:
                     response = response_with_http_info[0]
+                    resp_http = response_with_http_info[2]
                     if response.variations_result is not None:
                         resp = [ AmazonProduct(item) for item in response.variations_result.items]
-                        if self.CacheWriter:    
-                            self.CacheWriter(cache_url, pickle.dumps(resp))
-                        return response_with_http_info[2], resp
+                        if self.CacheWriter:
+                            self.CacheWriter(cache_url, pickle.dumps(resp), pickle.dumps(resp_http))
+                        return {'data': resp, 'http_info': resp_http}
 
                     if response.errors is not None:
-                        print(
-                            "\nPrinting Errors:\nPrinting First Error Object from list of Errors"
-                        )
-                        print("Error code", response.errors[0].code)
-                        print("Error message", response.errors[0].message)
-                        raise Exception(response.errors[0].message)
+                        #print("\nPrinting Errors:\nPrinting First Error Object from list of Errors")
+                        #print("Error code", response.errors[0].code)
+                        #print("Error message", response.errors[0].message)
+                        raise AmazonException(response.errors[0].code, response.errors[0].message)
             else:
                 if async_req:
                     thread = self.default_api.get_variations(get_variations_request, async_req=True)
@@ -359,33 +369,35 @@ class AmazonAPI:
                 if response.variations_result is not None:
                     resp = [ AmazonProduct(item) for item in response.variations_result.items]
                     if self.CacheWriter:
-                        self.CacheWriter(cache_url, pickle.dumps(resp))
-                    return resp
+                        self.CacheWriter(cache_url, pickle.dumps(resp), pickle.dumps(resp_http))
+                    return {'data': resp, 'http_info': resp_http}
 
                 if response.errors is not None:
-                    print("\nPrinting Errors:\nPrinting First Error Object from list of Errors")
-                    print("Error code", response.errors[0].code)
-                    print("Error message", response.errors[0].message)
-                    raise Exception(response.errors[0].message)
+                    #print("\nPrinting Errors:\nPrinting First Error Object from list of Errors")
+                    #print("Error code", response.errors[0].code)
+                    #print("Error message", response.errors[0].message)
+                    raise AmazonException(response.errors[0].code, response.errors[0].message)
 
         except ApiException as exception:
-            print("Error calling PA-API 5.0!")
-            print("Status code:", exception.status)
-            print("Errors :", exception.body)
-            print("Request ID:", exception.headers["x-amzn-RequestId"])
-            raise Exception(exception)
+            #print("Error calling PA-API 5.0!")
+            #print("Status code:", exception.status)
+            #print("Errors :", exception.body)
+            #print("Request ID:", exception.headers["x-amzn-RequestId"])
+            raise AmazonException("ApiException", exception.body)
 
         except TypeError as exception:
-            print("TypeError :", exception)
-            raise Exception(exception)
+            #print("TypeError :", exception)
+            raise AmazonException("TypeError", exception)
 
         except ValueError as exception:
-            print("ValueError :", exception)
-            raise Exception(exception)
+            #print("ValueError :", exception)
+            raise AmazonException(ValueError, exception)
 
+        except AmazonException as exception:
+            raise AmazonException(exception.status, exception.reason)
+        
         except Exception as exception:
-            print("Exception :", exception)
-            raise Exception(exception)
+            raise AmazonException("General", exception)
 
 
     """ Choose resources you want from GetItemsResource enum """
@@ -398,15 +410,6 @@ class AmazonAPI:
         
         """ Forming request """
         try:
-            get_items_request = GetItemsRequest(
-                partner_tag=self.partner_tag,
-                partner_type=PartnerType.ASSOCIATES,
-                marketplace=self.marketplace,
-                condition=condition,
-                item_ids=item_ids,
-                resources=get_items_resource,
-                currency_of_preference=currency_of_preference
-            )
             cache_url = self._cache_url(
                 {'partner_tag':self.partner_tag,
                 'partner_type':PartnerType.ASSOCIATES,
@@ -418,17 +421,29 @@ class AmazonAPI:
             if self.CacheReader:
                 cached_response_text = self.CacheReader(cache_url)
                 if cached_response_text is not None:
-                    return parse_response(pickle.loads(cached_response_text))
+                    return {'data': parse_response_item( pickle.loads(cached_response_text['data']) ), 'http_info': pickle.loads(cached_response_text['http_info'])}
+
+            get_items_request = GetItemsRequest(
+                partner_tag=self.partner_tag,
+                partner_type=PartnerType.ASSOCIATES,
+                marketplace=self.marketplace,
+                condition=condition,
+                item_ids=item_ids,
+                resources=get_items_resource,
+                currency_of_preference=currency_of_preference
+            )
+            
 
         except ValueError as exception:
-            print("Error in forming GetItemsRequest: ", exception)
-            raise Exception(exception)
+            #print("Error in forming GetItemsRequest: ", exception)
+            raise AmazonException("ValueError", exception)
 
         try:
             wait_time = 1 / self.throttling - (time.time() - self.last_query_time)
             if wait_time > 0:
                 time.sleep(wait_time)
             self.last_query_time = time.time()
+            resp_http = None
 
             if http_info:
                 response_with_http_info = self.default_api.get_items_with_http_info(
@@ -438,19 +453,18 @@ class AmazonAPI:
                 """ Parse response """
                 if response_with_http_info is not None:
                     response = response_with_http_info[0]
+                    resp_http = response_with_http_info[2]
                     if response.items_result is not None:
                         resp = [ AmazonProduct(item) for item in response.items_result.items]
                         if self.CacheWriter:
-                            self.CacheWriter(cache_url, pickle.dumps(resp))
-                        return response_with_http_info[2], parse_response(resp)
+                            self.CacheWriter(cache_url, pickle.dumps(resp), pickle.dumps(resp_http))
+                        return {'data': parse_response_item(resp), 'http_info': resp_http}
                         
                     if response.errors is not None:
-                        print(
-                            "\nPrinting Errors:\nPrinting First Error Object from list of Errors"
-                        )
-                        print("Error code", response.errors[0].code)
-                        print("Error message", response.errors[0].message)
-                        raise Exception(response.errors[0].message)
+                        #print("\nPrinting Errors:\nPrinting First Error Object from list of Errors")
+                        #print("Error code", response.errors[0].code)
+                        #print("Error message", response.errors[0].message)
+                        raise AmazonException(response.errors[0].code, response.errors[0].message)
 
             else:
                 """ Sending request """
@@ -464,34 +478,36 @@ class AmazonAPI:
                 if response.items_result is not None:
                     resp = [ AmazonProduct(item) for item in response.items_result.items]
                     if self.CacheWriter:
-                        self.CacheWriter(cache_url, pickle.dumps(resp))
-                    return parse_response( resp )
+                        self.CacheWriter(cache_url, pickle.dumps(resp), pickle.dumps(resp_http))
+                    return {'data': parse_response_item(resp), 'http_info': resp_http}
 
                 if response.errors is not None:
-                    print("\nPrinting Errors:\nPrinting First Error Object from list of Errors")
-                    print("Error code", response.errors[0].code)
-                    print("Error message", response.errors[0].message)
-                    raise Exception(response.errors[0].message)
+                    #print("\nPrinting Errors:\nPrinting First Error Object from list of Errors")
+                    #print("Error code", response.errors[0].code)
+                    #print("Error message", response.errors[0].message)
+                    raise AmazonException(response.errors[0].code, response.errors[0].message)
 
 
         except ApiException as exception:
-            print("Error calling PA-API 5.0!")
-            print("Status code:", exception.status)
-            print("Errors :", exception.body)
-            print("Request ID:", exception.headers["x-amzn-RequestId"])
-            raise Exception(exception)
+            #print("Error calling PA-API 5.0!")
+            #print("Status code:", exception.status)
+            #print("Errors :", exception.body)
+            #print("Request ID:", exception.headers["x-amzn-RequestId"])
+            raise AmazonException("ApiException", exception.body)
 
         except TypeError as exception:
-            print("TypeError :", exception)
-            raise Exception(exception)
+            #print("TypeError :", exception)
+            raise AmazonException("TypeError", exception)
 
         except ValueError as exception:
-            print("ValueError :", exception)
-            raise Exception(exception)
+            #print("ValueError :", exception)
+            raise AmazonException(ValueError, exception)
 
+        except AmazonException as exception:
+            raise AmazonException(exception.status, exception.reason)
+        
         except Exception as exception:
-            print("Exception :", exception)
-            raise Exception(exception)
+            raise AmazonException("General", exception)
 
 
 
@@ -506,14 +522,6 @@ class AmazonAPI:
         
         """ Forming request """
         try:
-            get_browse_node_request = GetBrowseNodesRequest(
-                partner_tag=self.partner_tag,
-                partner_type=PartnerType.ASSOCIATES,
-                marketplace=self.marketplace,
-                languages_of_preference=languages_of_preference,
-                browse_node_ids=browse_node_ids,
-                resources=get_browse_node_resources,
-            )
             cache_url = self._cache_url(
                 {'partner_tag':self.partner_tag,
                 'partner_type':PartnerType.ASSOCIATES,
@@ -524,16 +532,27 @@ class AmazonAPI:
             if self.CacheReader:
                 cached_response_text = self.CacheReader(cache_url)
                 if cached_response_text is not None:
-                    return parse_response_browse_node(pickle.loads(cached_response_text))
+                    return {'data': parse_response_browse_node (pickle.loads(cached_response_text['data']) ), 'http_info': pickle.loads(cached_response_text['http_info'])}
+
+            get_browse_node_request = GetBrowseNodesRequest(
+                partner_tag=self.partner_tag,
+                partner_type=PartnerType.ASSOCIATES,
+                marketplace=self.marketplace,
+                languages_of_preference=languages_of_preference,
+                browse_node_ids=browse_node_ids,
+                resources=get_browse_node_resources,
+            )
+            
         except ValueError as exception:
-            print("Error in forming GetBrowseNodesRequest: ", exception)
-            raise Exception(exception)
+            #print("Error in forming GetBrowseNodesRequest: ", exception)
+            raise AmazonException("ValueError", exception)
 
         try:
             wait_time = 1 / self.throttling - (time.time() - self.last_query_time)
             if wait_time > 0:
                 time.sleep(wait_time)
             self.last_query_time = time.time()
+            resp_http = None
 
             if http_info:
                 response_with_http_info = self.default_api.get_browse_nodes_with_http_info(get_browse_node_request)
@@ -541,19 +560,18 @@ class AmazonAPI:
                 """ Parse response """
                 if response_with_http_info is not None:
                     response = response_with_http_info[0]
+                    resp_http = response_with_http_info[2]
                     if response.browse_nodes_result is not None:
                         resp = [ AmazonBrowseNode(node) for node in response.browse_nodes_result.browse_nodes]
                         if self.CacheWriter:
-                            self.CacheWriter(cache_url, pickle.dumps(resp))
-                        return response_with_http_info[2], parse_response_browse_node(resp)
+                            self.CacheWriter(cache_url, pickle.dumps(resp), pickle.dumps(resp_http))
+                        return {'data': parse_response_browse_node(resp), 'http_info': resp_http}
                         
                     if response.errors is not None:
-                        print(
-                            "\nPrinting Errors:\nPrinting First Error Object from list of Errors"
-                        )
-                        print("Error code", response.errors[0].code)
-                        print("Error message", response.errors[0].message)
-                        raise Exception(response.errors[0].message)
+                        #print("\nPrinting Errors:\nPrinting First Error Object from list of Errors")
+                        #print("Error code", response.errors[0].code)
+                        #print("Error message", response.errors[0].message)
+                        raise AmazonException(response.errors[0].code, response.errors[0].message)
 
             else:
                 """ Sending request """
@@ -567,30 +585,32 @@ class AmazonAPI:
                 if response.browse_nodes_result is not None:
                     resp = [ AmazonBrowseNode(item) for item in response.browse_nodes_result.browse_nodes]
                     if self.CacheWriter:
-                        self.CacheWriter(cache_url, pickle.dumps(response.browse_nodes_result.browse_nodes))
-                    return parse_response_browse_node(resp)
+                        self.CacheWriter(cache_url, pickle.dumps(resp), pickle.dumps(resp_http))
+                    return {'data': parse_response_browse_node(resp), 'http_info': resp_http}
                     
                 if response.errors is not None:
-                    print("\nPrinting Errors:\nPrinting First Error Object from list of Errors")
-                    print("Error code", response.errors[0].code)
-                    print("Error message", response.errors[0].message)
-                    raise Exception(response.errors[0].message)
+                    #print("\nPrinting Errors:\nPrinting First Error Object from list of Errors")
+                    #print("Error code", response.errors[0].code)
+                    #print("Error message", response.errors[0].message)
+                    raise AmazonException(response.errors[0].code, response.errors[0].message)
 
         except ApiException as exception:
-            print("Error calling PA-API 5.0!")
-            print("Status code:", exception.status)
-            print("Errors :", exception.body)
-            print("Request ID:", exception.headers["x-amzn-RequestId"])
-            raise Exception(exception)
+            #print("Error calling PA-API 5.0!")
+            #print("Status code:", exception.status)
+            #print("Errors :", exception.body)
+            #print("Request ID:", exception.headers["x-amzn-RequestId"])
+            raise AmazonException("ApiException", exception.body)
 
         except TypeError as exception:
-            print("TypeError :", exception)
-            raise Exception(exception)
+            #print("TypeError :", exception)
+            raise AmazonException("TypeError", exception)
 
         except ValueError as exception:
-            print("ValueError :", exception)
-            raise Exception(exception)
+            #print("ValueError :", exception)
+            raise AmazonException(ValueError, exception)
 
+        except AmazonException as exception:
+            raise AmazonException(exception.status, exception.reason)
+        
         except Exception as exception:
-            print("Exception :", exception)
-            raise Exception(exception)
+            raise AmazonException("General", exception)
