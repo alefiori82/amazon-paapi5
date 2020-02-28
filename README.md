@@ -11,6 +11,7 @@ Like Bottlenose you can use cache reader and writer to limit the number of api c
 ![](https://github.com/alefiori82/amazon-paapi5/workflows/Upload%20Python%20Package/badge.svg)
 ![](https://github.com/alefiori82/amazon-paapi5/workflows/Build%20package/badge.svg)
 ![PyPI - Wheel](https://img.shields.io/pypi/wheel/amazon-paapi5)
+![Documentation Status](https://readthedocs.org/projects/amazon-paapi5/badge/?version=latest)](https://amazon-paapi5.readthedocs.io/en/latest/?badge=latest)
 
 Features
 --------
