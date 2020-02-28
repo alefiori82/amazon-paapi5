@@ -6,7 +6,7 @@ HTTP header information
 =======================
 
 
-For all the functions (:func:`amazon.paapi.search_items`, ``get_items``, ``get_variations``, ``get_browse_nodes``) you can retrieve the http header 
+For all the functions (``search_items``, ``get_items``, ``get_variations``, ``get_browse_nodes``) you can retrieve the http header 
 
 Example to retrieve the http info returned by a request::
 
