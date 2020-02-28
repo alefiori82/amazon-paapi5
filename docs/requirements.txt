@@ -1,0 +1,2 @@
+amightygirl.paapi5-python-sdk
+sphinx==2.4.3
