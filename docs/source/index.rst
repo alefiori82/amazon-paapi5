@@ -41,6 +41,10 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
+.. figure::  https://cdn.buymeacoffee.com/buttons/default-orange.png
+   :align:   center
+   :target: https://www.buymeacoffee.com/1jTO4Av
+
 
 
 
