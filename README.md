@@ -15,10 +15,15 @@ Like Bottlenose you can use cache reader and writer to limit the number of api c
 Features
 --------
 
-* Object oriented interface for simple usage.
-* Get multiple products at once.
-* Use cache to save api calls
+* Object oriented interface for simple usage
+* Get multiple products at once
+* Configurable query caching
+* Compatible with Python versions 3.6 and up
+* Support for AU, BR, CA, FR, IN, IT, JP, MX, ES, TR, MX, AE, UK and US Amazon Product Advertising API endpoints
+* Configurable throttling for batches of queries
 * Ask for new features through the [issues](https://github.com/alefiori82/amazon-paapi5/issues) section.
+* Full documentation on [Read the Docs](https://amazon-paapi5.readthedocs.io/en/latest/)
+
 
 Installation
 -------------
@@ -29,47 +34,65 @@ You can install or upgrade the module with:
 
 Usage guide
 -----------
-Basic usage:
+
+Search items::
 
     from amazon.paapi import AmazonAPI
     amazon = AmazonAPI(KEY, SECRET, TAG, COUNTRY)
     products = amazon.search_items('harry potter')
+    print(product['data'][0].image_large)
+    print(product['data'][1].prices.price)
 
-Get multiple product information:
+Get multiple products information::
 
+    from amazon.paapi import AmazonAPI
+    amazon = AmazonAPI(KEY, SECRET, TAG, COUNTRY)
     products = amazon.get_items(item_ids=['B01N5IB20Q','B01F9G43WU'])
-    print(product[0].image_large)
-    print(product[1].prices.price)
+    print(products['data']['B01N5IB20Q'].image_large)
+    print(products['data']['B01F9G43WU'].prices.price)
 
 
-Get variations
+Get variations::
 
+    from amazon.paapi import AmazonAPI
+    amazon = AmazonAPI(KEY, SECRET, TAG, COUNTRY)
     products = amazon.get_variations(asin=['B01N5IB20Q','B01F9G43WU'])
 
-Get browse nodes
+Get browse nodes::
 
+    from amazon.paapi import AmazonAPI
+    amazon = AmazonAPI(KEY, SECRET, TAG, COUNTRY)
     browseNodes = amazon.get_browse_nodes(browse_node_ids=['473535031'])
 
-Use cache reader and writer
+Use cache reader and writer::
+
+    from amazon.paapi import AmazonAPI
 
     DATA = []
     
-    def custom_save_function(url, data): 
-        DATA.append({'url':url, 'data': data}) 
+    def custom_save_function(url, data, http_info):  
+        DATA.append({'url':url, 'data': data, 'http_info':http_info}) 
     
-    def custom_retrieval_function(url): 
-        for item in DATA: 
+    def custom_retrieval_function(url):  
+        for item in DATA:  
             if item["url"] == url: 
-                return item['data'] 
+                return {'data':item['data'], 'http_info': item['http_info']}  
         return None
     
     amazon = AmazonAPI(KEY, SECRET, TAG, COUNTRY, CacheReader=custom_retrieval_function, CacheWriter=custom_save_function) 
     products = amazon.search_items('harry potter')
 
 
+
 Changelog
 -------------
 
+    Version 1.1.0
+        - CacheReader and CacheWriter available for all the search functions
+        - Defintion af AmazonException to get exceptions during the api calls
+        - Constants defintion
+        - AmazonProduct and AmazonBrowseNode definition
+        - Uniform data structure returned by all the api calls
     Version 1.0.0
         - CacheReader and CacheWriter
         - Enable throttling

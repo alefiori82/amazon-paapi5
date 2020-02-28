@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 ipython = "*"
 amightygirl-paapi5-python-sdk = "*"
+sphinx = "*"
+mkdocs = "*"
 
 [requires]
 python_version = "3.6"

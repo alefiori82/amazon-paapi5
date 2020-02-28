@@ -1,0 +1,492 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Documentation for the Code &#8212; Amazon paapi5 1.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Advanced Usage" href="advancedUsage.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="advancedUsage.html" title="Advanced Usage"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Amazon paapi5 1.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-amazon">
+<span id="documentation-for-the-code"></span><h1>Documentation for the Code<a class="headerlink" href="#module-amazon" title="Permalink to this headline">¶</a></h1>
+<p>Amazon Product Advertising API 5.0 wrapper for Python</p>
+<div class="section" id="module-amazon.paapi">
+<span id="paapi"></span><h2>paapi<a class="headerlink" href="#module-amazon.paapi" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-paapi"></span><dl class="class">
+<dt id="amazon.paapi.AmazonAPI">
+<em class="property">class </em><code class="sig-prename descclassname">amazon.paapi.</code><code class="sig-name descname">AmazonAPI</code><span class="sig-paren">(</span><em class="sig-param">access_key</em>, <em class="sig-param">secret_key</em>, <em class="sig-param">partner_tag</em>, <em class="sig-param">country='US'</em>, <em class="sig-param">throttling=0.9</em>, <em class="sig-param">CacheReader=None</em>, <em class="sig-param">CacheWriter=None</em><span class="sig-paren">)</span><a class="headerlink" href="#amazon.paapi.AmazonAPI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an instance containing your API credentials.</p>
+<dl class="simple">
+<dt>params:</dt><dd><dl class="simple">
+<dt><em>access_key (string)</em></dt><dd><p>Your API key</p>
+</dd>
+<dt><em>secret_key (string)</em></dt><dd><p>Your API secret</p>
+</dd>
+<dt><em>partner_tag (string)</em></dt><dd><p>The tag you want to use for the URL</p>
+</dd>
+<dt><em>country (string)</em></dt><dd><p>Country code</p>
+</dd>
+<dt><em>throttling (float, optional)</em></dt><dd><p>Reduce this value to wait longer between API calls</p>
+</dd>
+<dt><em>CacheReader (function)</em></dt><dd><p>Write a function to read the stored responses from previous api calls</p>
+</dd>
+<dt><em>CacheWriter (function)</em></dt><dd><p>Write a function to save the responses returned by amazon api calls</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="amazon.paapi.AmazonAPI.get_browse_nodes">
+<code class="sig-name descname">get_browse_nodes</code><span class="sig-paren">(</span><em class="sig-param">browse_node_ids=[], http_info=False, async_req=False, languages_of_preference=None, get_browse_node_resources=['BrowseNodes.Ancestor', 'BrowseNodes.Children']</em><span class="sig-paren">)</span><a class="headerlink" href="#amazon.paapi.AmazonAPI.get_browse_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>” 
+Get browse nodes’ information.
+Choose resources you want from BROWSE_RESOURCES enum 
+For more details, refer: <a class="reference external" href="https://webservices.amazon.com/paapi5/documentation/getbrowsenodes.html#request-parameters">https://webservices.amazon.com/paapi5/documentation/getbrowsenodes.html#request-parameters</a></p>
+<dl class="simple">
+<dt>args:</dt><dd><dl class="simple">
+<dt><em>browse_node_ids (list of string)</em></dt><dd><p>list of browse node ids</p>
+</dd>
+<dt><em>http_info (boolean)</em></dt><dd><p>specify if http header should be returned</p>
+</dd>
+<dt><em>async_req (boolean)</em></dt><dd><p>specify if a thread should be created to run the request</p>
+</dd>
+<dt><em>languages_of_preference (list of string)</em></dt><dd><p>specify the language of returned results</p>
+</dd>
+<dt><em>get_browse_node_resources (list)</em></dt><dd><p>For more details, refer: <a class="reference external" href="https://webservices.amazon.com/paapi5/documentation/getbrowsenodes.html#request-parameters">https://webservices.amazon.com/paapi5/documentation/getbrowsenodes.html#request-parameters</a>. By deafult all possible resources are requested</p>
+</dd>
+</dl>
+</dd>
+<dt>return</dt><dd><dl class="simple">
+<dt>Dict with </dt><dd><dl class="simple">
+<dt><em>data</em> </dt><dd><p>Dict of BrowseNodeID to AmazonBrowseNode object</p>
+</dd>
+<dt><em>http_info</em></dt><dd><p>contains the http header information if requested. By default None</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="amazon.paapi.AmazonAPI.get_items">
+<code class="sig-name descname">get_items</code><span class="sig-paren">(</span><em class="sig-param">item_ids=[], currency_of_preference=None, condition=None, http_info=False, async_req=False, get_items_resource=['BrowseNodeInfo.BrowseNodes', 'BrowseNodeInfo.BrowseNodes.Ancestor', 'BrowseNodeInfo.BrowseNodes.SalesRank', 'BrowseNodeInfo.WebsiteSalesRank', 'Images.Primary.Small', 'Images.Primary.Medium', 'Images.Primary.Large', 'Images.Variants.Small', 'Images.Variants.Medium', 'Images.Variants.Large', 'ItemInfo.ByLineInfo', 'ItemInfo.ContentInfo', 'ItemInfo.ContentRating', 'ItemInfo.Classifications', 'ItemInfo.ExternalIds', 'ItemInfo.Features', 'ItemInfo.ManufactureInfo', 'ItemInfo.ProductInfo', 'ItemInfo.TechnicalInfo', 'ItemInfo.Title', 'ItemInfo.TradeInInfo', 'Offers.Listings.Availability.MaxOrderQuantity', 'Offers.Listings.Availability.Message', 'Offers.Listings.Availability.MinOrderQuantity', 'Offers.Listings.Availability.Type', 'Offers.Listings.Condition', 'Offers.Listings.Condition.SubCondition', 'Offers.Listings.DeliveryInfo.IsAmazonFulfilled', 'Offers.Listings.DeliveryInfo.IsFreeShippingEligible', 'Offers.Listings.DeliveryInfo.IsPrimeEligible', 'Offers.Listings.DeliveryInfo.ShippingCharges', 'Offers.Listings.IsBuyBoxWinner', 'Offers.Listings.LoyaltyPoints.Points', 'Offers.Listings.MerchantInfo', 'Offers.Listings.Price', 'Offers.Listings.ProgramEligibility.IsPrimeExclusive', 'Offers.Listings.ProgramEligibility.IsPrimePantry', 'Offers.Listings.Promotions', 'Offers.Listings.SavingBasis', 'Offers.Summaries.HighestPrice', 'Offers.Summaries.LowestPrice', 'Offers.Summaries.OfferCount', 'ParentASIN', 'RentalOffers.Listings.Availability.MaxOrderQuantity', 'RentalOffers.Listings.Availability.Message', 'RentalOffers.Listings.Availability.MinOrderQuantity', 'RentalOffers.Listings.Availability.Type', 'RentalOffers.Listings.BasePrice', 'RentalOffers.Listings.Condition', 'RentalOffers.Listings.Condition.SubCondition', 'RentalOffers.Listings.DeliveryInfo.IsAmazonFulfilled', 'RentalOffers.Listings.DeliveryInfo.IsFreeShippingEligible', 'RentalOffers.Listings.DeliveryInfo.IsPrimeEligible', 'RentalOffers.Listings.DeliveryInfo.ShippingCharges', 'RentalOffers.Listings.MerchantInfo']</em><span class="sig-paren">)</span><a class="headerlink" href="#amazon.paapi.AmazonAPI.get_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get items’ information.
+Choose resources you want from ITEM_RESOURCES enum 
+For more details, refer: <a class="reference external" href="https://webservices.amazon.com/paapi5/documentation/get-items.html#ItemLookup-rp">https://webservices.amazon.com/paapi5/documentation/get-items.html#ItemLookup-rp</a></p>
+<dl class="simple">
+<dt>args:</dt><dd><dl class="simple">
+<dt><em>item_ids (list of string)</em></dt><dd><p>list of asin of the products of interest</p>
+</dd>
+<dt><em>currency_of_preference (string)</em></dt><dd><p>specify the currency of returned results</p>
+</dd>
+<dt><em>condition</em> (enum, optional)*</dt><dd><p>filter the products based on the condition</p>
+</dd>
+<dt><em>http_info (boolean)</em></dt><dd><p>specify if http header should be returned</p>
+</dd>
+<dt><em>async_req (boolean)</em></dt><dd><p>specify if a thread should be created to run the request</p>
+</dd>
+<dt><em>get_items_resource (list)</em></dt><dd><p>For more details, refer: <a class="reference external" href="https://webservices.amazon.com/paapi5/documentation/get-items.html#ItemLookup-rp">https://webservices.amazon.com/paapi5/documentation/get-items.html#ItemLookup-rp</a>. By deafult all possible resources are requested</p>
+</dd>
+</dl>
+</dd>
+<dt>return</dt><dd><dl class="simple">
+<dt>Dict with </dt><dd><dl class="simple">
+<dt><em>data</em> </dt><dd><p>Dict of ASIN to AmazonProduct object</p>
+</dd>
+<dt><em>http_info</em></dt><dd><p>contains the http header information if requested. By default None</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="amazon.paapi.AmazonAPI.get_variations">
+<code class="sig-name descname">get_variations</code><span class="sig-paren">(</span><em class="sig-param">asin, condition=None, languages_of_preference=None, currency_of_preference=None, async_req=False, http_info=False, get_variations_resources=['BrowseNodeInfo.BrowseNodes', 'BrowseNodeInfo.BrowseNodes.Ancestor', 'BrowseNodeInfo.BrowseNodes.SalesRank', 'BrowseNodeInfo.WebsiteSalesRank', 'Images.Primary.Small', 'Images.Primary.Medium', 'Images.Primary.Large', 'Images.Variants.Small', 'Images.Variants.Medium', 'Images.Variants.Large', 'ItemInfo.ByLineInfo', 'ItemInfo.ContentInfo', 'ItemInfo.ContentRating', 'ItemInfo.Classifications', 'ItemInfo.ExternalIds', 'ItemInfo.Features', 'ItemInfo.ManufactureInfo', 'ItemInfo.ProductInfo', 'ItemInfo.TechnicalInfo', 'ItemInfo.Title', 'ItemInfo.TradeInInfo', 'Offers.Listings.Availability.MaxOrderQuantity', 'Offers.Listings.Availability.Message', 'Offers.Listings.Availability.MinOrderQuantity', 'Offers.Listings.Availability.Type', 'Offers.Listings.Condition', 'Offers.Listings.Condition.SubCondition', 'Offers.Listings.DeliveryInfo.IsAmazonFulfilled', 'Offers.Listings.DeliveryInfo.IsFreeShippingEligible', 'Offers.Listings.DeliveryInfo.IsPrimeEligible', 'Offers.Listings.DeliveryInfo.ShippingCharges', 'Offers.Listings.IsBuyBoxWinner', 'Offers.Listings.LoyaltyPoints.Points', 'Offers.Listings.MerchantInfo', 'Offers.Listings.Price', 'Offers.Listings.ProgramEligibility.IsPrimeExclusive', 'Offers.Listings.ProgramEligibility.IsPrimePantry', 'Offers.Listings.Promotions', 'Offers.Listings.SavingBasis', 'Offers.Summaries.HighestPrice', 'Offers.Summaries.LowestPrice', 'Offers.Summaries.OfferCount', 'ParentASIN', 'RentalOffers.Listings.Availability.MaxOrderQuantity', 'RentalOffers.Listings.Availability.Message', 'RentalOffers.Listings.Availability.MinOrderQuantity', 'RentalOffers.Listings.Availability.Type', 'RentalOffers.Listings.BasePrice', 'RentalOffers.Listings.Condition', 'RentalOffers.Listings.Condition.SubCondition', 'RentalOffers.Listings.DeliveryInfo.IsAmazonFulfilled', 'RentalOffers.Listings.DeliveryInfo.IsFreeShippingEligible', 'RentalOffers.Listings.DeliveryInfo.IsPrimeEligible', 'RentalOffers.Listings.DeliveryInfo.ShippingCharges', 'RentalOffers.Listings.MerchantInfo', 'VariationSummary.Price.HighestPrice', 'VariationSummary.Price.LowestPrice', 'VariationSummary.VariationDimension']</em><span class="sig-paren">)</span><a class="headerlink" href="#amazon.paapi.AmazonAPI.get_variations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get product variation using the asin of orginal product.
+Choose resources you want from VARIATION_RESOURCES enum.
+For more details, refer: <a class="reference external" href="https://webservices.amazon.com/paapi5/documentation/get-variations.html#request-parameters">https://webservices.amazon.com/paapi5/documentation/get-variations.html#request-parameters</a></p>
+<dl class="simple">
+<dt>args:</dt><dd><dl class="simple">
+<dt><em>asin (string)</em></dt><dd><p>asin of the product for which we want the variations</p>
+</dd>
+<dt><em>condition</em> (enum, optional)*</dt><dd><p>filter the products based on the condition</p>
+</dd>
+<dt><em>languages_of_preference (list of string)</em></dt><dd><p>specify the language of returned results</p>
+</dd>
+<dt><em>currency_of_preference (string)</em></dt><dd><p>specify the currency of returned results</p>
+</dd>
+<dt><em>http_info (boolean)</em></dt><dd><p>specify if http header should be returned</p>
+</dd>
+<dt><em>async_req (boolean)</em></dt><dd><p>specify if a thread should be created to run the request</p>
+</dd>
+<dt><em>get_variations_resources (list)</em></dt><dd><p>For more details, refer: <a class="reference external" href="https://webservices.amazon.com/paapi5/documentation/get-variations.html#request-parameters">https://webservices.amazon.com/paapi5/documentation/get-variations.html#request-parameters</a>. By deafult all possible resources are requested</p>
+</dd>
+</dl>
+</dd>
+<dt>return</dt><dd><dl class="simple">
+<dt>Dict with </dt><dd><dl class="simple">
+<dt><em>data</em> </dt><dd><p>contains the AmazonProduct list</p>
+</dd>
+<dt><em>http_info</em></dt><dd><p>contains the http header information if requested. By default None</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="amazon.paapi.AmazonAPI.search_items">
+<code class="sig-name descname">search_items</code><span class="sig-paren">(</span><em class="sig-param">keywords, brand=None, condition=None, sortBy=None, browseNode=None, search_index='All', item_count=10, http_info=False, async_req=False, search_items_resource=['BrowseNodeInfo.BrowseNodes', 'BrowseNodeInfo.BrowseNodes.Ancestor', 'BrowseNodeInfo.BrowseNodes.SalesRank', 'BrowseNodeInfo.WebsiteSalesRank', 'Images.Primary.Small', 'Images.Primary.Medium', 'Images.Primary.Large', 'Images.Variants.Small', 'Images.Variants.Medium', 'Images.Variants.Large', 'ItemInfo.ByLineInfo', 'ItemInfo.ContentInfo', 'ItemInfo.ContentRating', 'ItemInfo.Classifications', 'ItemInfo.ExternalIds', 'ItemInfo.Features', 'ItemInfo.ManufactureInfo', 'ItemInfo.ProductInfo', 'ItemInfo.TechnicalInfo', 'ItemInfo.Title', 'ItemInfo.TradeInInfo', 'Offers.Listings.Availability.MaxOrderQuantity', 'Offers.Listings.Availability.Message', 'Offers.Listings.Availability.MinOrderQuantity', 'Offers.Listings.Availability.Type', 'Offers.Listings.Condition', 'Offers.Listings.Condition.SubCondition', 'Offers.Listings.DeliveryInfo.IsAmazonFulfilled', 'Offers.Listings.DeliveryInfo.IsFreeShippingEligible', 'Offers.Listings.DeliveryInfo.IsPrimeEligible', 'Offers.Listings.DeliveryInfo.ShippingCharges', 'Offers.Listings.IsBuyBoxWinner', 'Offers.Listings.LoyaltyPoints.Points', 'Offers.Listings.MerchantInfo', 'Offers.Listings.Price', 'Offers.Listings.ProgramEligibility.IsPrimeExclusive', 'Offers.Listings.ProgramEligibility.IsPrimePantry', 'Offers.Listings.Promotions', 'Offers.Listings.SavingBasis', 'Offers.Summaries.HighestPrice', 'Offers.Summaries.LowestPrice', 'Offers.Summaries.OfferCount', 'ParentASIN', 'RentalOffers.Listings.Availability.MaxOrderQuantity', 'RentalOffers.Listings.Availability.Message', 'RentalOffers.Listings.Availability.MinOrderQuantity', 'RentalOffers.Listings.Availability.Type', 'RentalOffers.Listings.BasePrice', 'RentalOffers.Listings.Condition', 'RentalOffers.Listings.Condition.SubCondition', 'RentalOffers.Listings.DeliveryInfo.IsAmazonFulfilled', 'RentalOffers.Listings.DeliveryInfo.IsFreeShippingEligible', 'RentalOffers.Listings.DeliveryInfo.IsPrimeEligible', 'RentalOffers.Listings.DeliveryInfo.ShippingCharges', 'RentalOffers.Listings.MerchantInfo', 'SearchRefinements']</em><span class="sig-paren">)</span><a class="headerlink" href="#amazon.paapi.AmazonAPI.search_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search products based on keywords
+Choose resources you want from SEARCH_RESOURCES enum 
+For more details, refer: <a class="reference external" href="https://webservices.amazon.com/paapi5/documentation/search-items.html#resources-parameter">https://webservices.amazon.com/paapi5/documentation/search-items.html#resources-parameter</a></p>
+<dl class="simple">
+<dt>args:</dt><dd><dl class="simple">
+<dt><em>keywords (string)</em></dt><dd><p>keywords to search products</p>
+</dd>
+<dt><em>brand</em> (string, optional)*</dt><dd><p>filter the products based on the brand</p>
+</dd>
+<dt><em>condition</em> (enum, optional)*</dt><dd><p>filter the products based on the condition</p>
+</dd>
+<dt><em>sortBy (string, optional)</em></dt><dd><p>sort hte results based on the specification defined at <a class="reference external" href="https://webservices.amazon.com/paapi5/documentation/search-items.html#sortby-parameter">https://webservices.amazon.com/paapi5/documentation/search-items.html#sortby-parameter</a></p>
+</dd>
+<dt><em>browseNode (string)</em></dt><dd><p>search products into a specific browse node</p>
+</dd>
+<dt><em>search_index (string)</em></dt><dd><p>search products based on an index. Default value “All”</p>
+</dd>
+<dt><em>item_count (integer)</em></dt><dd><p>number of products returned. Values in the range [1,10]. Default 10</p>
+</dd>
+<dt><em>http_info (boolean)</em></dt><dd><p>specify if http header should be returned</p>
+</dd>
+<dt><em>async_req (boolean)</em></dt><dd><p>specify if a thread should be created to run the request</p>
+</dd>
+<dt><em>search_items_resource (list)</em></dt><dd><p>For more details, refer: <a class="reference external" href="https://webservices.amazon.com/paapi5/documentation/search-items.html#resources-parameter">https://webservices.amazon.com/paapi5/documentation/search-items.html#resources-parameter</a>. By deafult all possible resources are requested</p>
+</dd>
+</dl>
+</dd>
+<dt>return</dt><dd><dl class="simple">
+<dt>Dict with </dt><dd><dl class="simple">
+<dt><em>data</em> </dt><dd><p>contains the AmazonProduct list</p>
+</dd>
+<dt><em>http_info</em></dt><dd><p>contains the http header information if requested. By default None</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="amazon.paapi.AmazonAPI.search_items_pool">
+<code class="sig-name descname">search_items_pool</code><span class="sig-paren">(</span><em class="sig-param">keywords, brand=None, condition=None, sortBy=None, browseNode=None, search_index='All', item_count=10, search_items_resource=['BrowseNodeInfo.BrowseNodes', 'BrowseNodeInfo.BrowseNodes.Ancestor', 'BrowseNodeInfo.BrowseNodes.SalesRank', 'BrowseNodeInfo.WebsiteSalesRank', 'Images.Primary.Small', 'Images.Primary.Medium', 'Images.Primary.Large', 'Images.Variants.Small', 'Images.Variants.Medium', 'Images.Variants.Large', 'ItemInfo.ByLineInfo', 'ItemInfo.ContentInfo', 'ItemInfo.ContentRating', 'ItemInfo.Classifications', 'ItemInfo.ExternalIds', 'ItemInfo.Features', 'ItemInfo.ManufactureInfo', 'ItemInfo.ProductInfo', 'ItemInfo.TechnicalInfo', 'ItemInfo.Title', 'ItemInfo.TradeInInfo', 'Offers.Listings.Availability.MaxOrderQuantity', 'Offers.Listings.Availability.Message', 'Offers.Listings.Availability.MinOrderQuantity', 'Offers.Listings.Availability.Type', 'Offers.Listings.Condition', 'Offers.Listings.Condition.SubCondition', 'Offers.Listings.DeliveryInfo.IsAmazonFulfilled', 'Offers.Listings.DeliveryInfo.IsFreeShippingEligible', 'Offers.Listings.DeliveryInfo.IsPrimeEligible', 'Offers.Listings.DeliveryInfo.ShippingCharges', 'Offers.Listings.IsBuyBoxWinner', 'Offers.Listings.LoyaltyPoints.Points', 'Offers.Listings.MerchantInfo', 'Offers.Listings.Price', 'Offers.Listings.ProgramEligibility.IsPrimeExclusive', 'Offers.Listings.ProgramEligibility.IsPrimePantry', 'Offers.Listings.Promotions', 'Offers.Listings.SavingBasis', 'Offers.Summaries.HighestPrice', 'Offers.Summaries.LowestPrice', 'Offers.Summaries.OfferCount', 'ParentASIN', 'RentalOffers.Listings.Availability.MaxOrderQuantity', 'RentalOffers.Listings.Availability.Message', 'RentalOffers.Listings.Availability.MinOrderQuantity', 'RentalOffers.Listings.Availability.Type', 'RentalOffers.Listings.BasePrice', 'RentalOffers.Listings.Condition', 'RentalOffers.Listings.Condition.SubCondition', 'RentalOffers.Listings.DeliveryInfo.IsAmazonFulfilled', 'RentalOffers.Listings.DeliveryInfo.IsFreeShippingEligible', 'RentalOffers.Listings.DeliveryInfo.IsPrimeEligible', 'RentalOffers.Listings.DeliveryInfo.ShippingCharges', 'RentalOffers.Listings.MerchantInfo', 'SearchRefinements'], connetion_pool_max_size=12</em><span class="sig-paren">)</span><a class="headerlink" href="#amazon.paapi.AmazonAPI.search_items_pool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search products based on keywords. You can specify max connection pool size here. We recommend a value equal to cpu_count * 5.
+Choose resources you want from SEARCH_RESOURCES enum.
+For more details, refer: <a class="reference external" href="https://webservices.amazon.com/paapi5/documentation/search-items.html#resources-parameter">https://webservices.amazon.com/paapi5/documentation/search-items.html#resources-parameter</a></p>
+<dl class="simple">
+<dt>args:</dt><dd><dl class="simple">
+<dt><em>keywords (string)</em></dt><dd><p>keywords to search products</p>
+</dd>
+<dt><em>brand</em> (string, optional)*</dt><dd><p>filter the products based on the brand</p>
+</dd>
+<dt><em>condition</em> (enum, optional)*</dt><dd><p>filter the products based on the condition</p>
+</dd>
+<dt><em>sortBy (string, optional)</em></dt><dd><p>sort hte results based on the specification defined at <a class="reference external" href="https://webservices.amazon.com/paapi5/documentation/search-items.html#sortby-parameter">https://webservices.amazon.com/paapi5/documentation/search-items.html#sortby-parameter</a></p>
+</dd>
+<dt><em>browseNode (string)</em></dt><dd><p>search products into a specific browse node</p>
+</dd>
+<dt><em>search_index (string)</em></dt><dd><p>search products based on an index. Default value “All”</p>
+</dd>
+<dt><em>item_count (integer)</em></dt><dd><p>number of products returned. Values in the range [1,10]. Default 10</p>
+</dd>
+<dt><em>search_items_resource (list)</em></dt><dd><p>For more details, refer: <a class="reference external" href="https://webservices.amazon.com/paapi5/documentation/search-items.html#resources-parameter">https://webservices.amazon.com/paapi5/documentation/search-items.html#resources-parameter</a>. By deafult all possible resources are requested</p>
+</dd>
+<dt><em>connetion_pool_max_size (integer)</em></dt><dd><p>sice of connection pool. Default 12</p>
+</dd>
+</dl>
+</dd>
+<dt>return</dt><dd><dl class="simple">
+<dt>Dict with </dt><dd><dl class="simple">
+<dt><em>data</em> </dt><dd><p>contains the AmazonProduct list</p>
+</dd>
+<dt><em>http_info</em></dt><dd><p>contains the http header information if requested. By default None</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="amazon.paapi.parse_response_browse_node">
+<code class="sig-prename descclassname">amazon.paapi.</code><code class="sig-name descname">parse_response_browse_node</code><span class="sig-paren">(</span><em class="sig-param">browse_nodes_response_list</em><span class="sig-paren">)</span><a class="headerlink" href="#amazon.paapi.parse_response_browse_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function parses Browse Nodes Response and creates a dict of BrowseNodeID to AmazonBrowseNode object</p>
+<dl class="simple">
+<dt>params</dt><dd><dl class="simple">
+<dt><em>browse_nodes_response_list</em></dt><dd><p>List of BrowseNodes in GetBrowseNodes response</p>
+</dd>
+</dl>
+</dd>
+<dt>return</dt><dd><p>Dict of BrowseNodeID to AmazonBrowseNode object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="amazon.paapi.parse_response_item">
+<code class="sig-prename descclassname">amazon.paapi.</code><code class="sig-name descname">parse_response_item</code><span class="sig-paren">(</span><em class="sig-param">item_response_list</em><span class="sig-paren">)</span><a class="headerlink" href="#amazon.paapi.parse_response_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function parses GetItemsResponse and creates a dict of ASIN to AmazonProduct object</p>
+<dl class="simple">
+<dt>params:</dt><dd><dl class="simple">
+<dt><em>item_response_list</em></dt><dd><p>List of Items in GetItemsResponse</p>
+</dd>
+</dl>
+</dd>
+<dt>return</dt><dd><p>Dict of ASIN to AmazonProduct object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-amazon.entities">
+<span id="entities"></span><h2>entities<a class="headerlink" href="#module-amazon.entities" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-entities"></span><dl class="class">
+<dt id="amazon.entities.AmazonBrowseNode">
+<em class="property">class </em><code class="sig-prename descclassname">amazon.entities.</code><code class="sig-name descname">AmazonBrowseNode</code><span class="sig-paren">(</span><em class="sig-param">node</em><span class="sig-paren">)</span><a class="headerlink" href="#amazon.entities.AmazonBrowseNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class representing a browse node</p>
+<dl class="method">
+<dt id="amazon.entities.AmazonBrowseNode.to_dict">
+<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#amazon.entities.AmazonBrowseNode.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the model properties as a dict</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="amazon.entities.AmazonBrowseNode.to_str">
+<code class="sig-name descname">to_str</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#amazon.entities.AmazonBrowseNode.to_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the string representation of the model</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="amazon.entities.AmazonProduct">
+<em class="property">class </em><code class="sig-prename descclassname">amazon.entities.</code><code class="sig-name descname">AmazonProduct</code><span class="sig-paren">(</span><em class="sig-param">item</em><span class="sig-paren">)</span><a class="headerlink" href="#amazon.entities.AmazonProduct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class representing a product</p>
+<dl class="method">
+<dt id="amazon.entities.AmazonProduct.bestOffer">
+<em class="property">property </em><code class="sig-name descname">bestOffer</code><a class="headerlink" href="#amazon.entities.AmazonProduct.bestOffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>return best offer information</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="amazon.entities.AmazonProduct.isAmazonFulfilled">
+<em class="property">property </em><code class="sig-name descname">isAmazonFulfilled</code><a class="headerlink" href="#amazon.entities.AmazonProduct.isAmazonFulfilled" title="Permalink to this definition">¶</a></dt>
+<dd><p>return if the best offer is amazon fulfilled</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="amazon.entities.AmazonProduct.isDiscount">
+<em class="property">property </em><code class="sig-name descname">isDiscount</code><a class="headerlink" href="#amazon.entities.AmazonProduct.isDiscount" title="Permalink to this definition">¶</a></dt>
+<dd><p>return if the best offer has a discount</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="amazon.entities.AmazonProduct.isFreeShipping">
+<em class="property">property </em><code class="sig-name descname">isFreeShipping</code><a class="headerlink" href="#amazon.entities.AmazonProduct.isFreeShipping" title="Permalink to this definition">¶</a></dt>
+<dd><p>return if the best offer is free shipping eligible</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="amazon.entities.AmazonProduct.isPrime">
+<em class="property">property </em><code class="sig-name descname">isPrime</code><a class="headerlink" href="#amazon.entities.AmazonProduct.isPrime" title="Permalink to this definition">¶</a></dt>
+<dd><p>return if the best offer is Prime eligible</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="amazon.entities.AmazonProduct.originalPrice">
+<em class="property">property </em><code class="sig-name descname">originalPrice</code><a class="headerlink" href="#amazon.entities.AmazonProduct.originalPrice" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the price without discount</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="amazon.entities.AmazonProduct.to_dict">
+<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#amazon.entities.AmazonProduct.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the model properties as a dict</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="amazon.entities.AmazonProduct.to_str">
+<code class="sig-name descname">to_str</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#amazon.entities.AmazonProduct.to_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the string representation of the model</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-amazon.exception">
+<span id="exception"></span><h2>exception<a class="headerlink" href="#module-amazon.exception" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-exception"></span><dl class="exception">
+<dt id="amazon.exception.AmazonException">
+<em class="property">exception </em><code class="sig-prename descclassname">amazon.exception.</code><code class="sig-name descname">AmazonException</code><span class="sig-paren">(</span><em class="sig-param">status=None</em>, <em class="sig-param">reason=None</em><span class="sig-paren">)</span><a class="headerlink" href="#amazon.exception.AmazonException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class representing an exception raised by any call</p>
+<dl class="simple">
+<dt>Properties</dt><dd><dl class="simple">
+<dt><em>status (string)</em></dt><dd><p>type of exception</p>
+</dd>
+<dt><em>reason (string, object)</em></dt><dd><p>detail of the exception</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-amazon.constant">
+<span id="constant"></span><h2>constant<a class="headerlink" href="#module-amazon.constant" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-constant"></span><dl class="data">
+<dt id="amazon.constant.BROWSE_RESOURCES">
+<code class="sig-prename descclassname">amazon.constant.</code><code class="sig-name descname">BROWSE_RESOURCES</code><em class="property"> = ['BrowseNodes.Ancestor', 'BrowseNodes.Children']</em><a class="headerlink" href="#amazon.constant.BROWSE_RESOURCES" title="Permalink to this definition">¶</a></dt>
+<dd><p>BROWSE_RESOURCES values</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="amazon.constant.CONDITIONS">
+<code class="sig-prename descclassname">amazon.constant.</code><code class="sig-name descname">CONDITIONS</code><em class="property"> = ['Any', 'Collectible', 'New', 'Refurbished', 'Used']</em><a class="headerlink" href="#amazon.constant.CONDITIONS" title="Permalink to this definition">¶</a></dt>
+<dd><p>CONDITIONS values</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="amazon.constant.DOMAINS">
+<code class="sig-prename descclassname">amazon.constant.</code><code class="sig-name descname">DOMAINS</code><em class="property"> = {'AE': 'ae', 'AU': 'com.au', 'BR': 'com.br', 'CA': 'ca', 'DE': 'de', 'ES': 'es', 'FR': 'fr', 'IN': 'in', 'IT': 'it', 'JP': 'co.jp', 'MX': 'com.mx', 'TR': 'com.tr', 'UK': 'co.uk', 'US': 'com'}</em><a class="headerlink" href="#amazon.constant.DOMAINS" title="Permalink to this definition">¶</a></dt>
+<dd><p>DOMAINS values</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="amazon.constant.ITEM_RESOURCES">
+<code class="sig-prename descclassname">amazon.constant.</code><code class="sig-name descname">ITEM_RESOURCES</code><em class="property"> = ['BrowseNodeInfo.BrowseNodes', 'BrowseNodeInfo.BrowseNodes.Ancestor', 'BrowseNodeInfo.BrowseNodes.SalesRank', 'BrowseNodeInfo.WebsiteSalesRank', 'Images.Primary.Small', 'Images.Primary.Medium', 'Images.Primary.Large', 'Images.Variants.Small', 'Images.Variants.Medium', 'Images.Variants.Large', 'ItemInfo.ByLineInfo', 'ItemInfo.ContentInfo', 'ItemInfo.ContentRating', 'ItemInfo.Classifications', 'ItemInfo.ExternalIds', 'ItemInfo.Features', 'ItemInfo.ManufactureInfo', 'ItemInfo.ProductInfo', 'ItemInfo.TechnicalInfo', 'ItemInfo.Title', 'ItemInfo.TradeInInfo', 'Offers.Listings.Availability.MaxOrderQuantity', 'Offers.Listings.Availability.Message', 'Offers.Listings.Availability.MinOrderQuantity', 'Offers.Listings.Availability.Type', 'Offers.Listings.Condition', 'Offers.Listings.Condition.SubCondition', 'Offers.Listings.DeliveryInfo.IsAmazonFulfilled', 'Offers.Listings.DeliveryInfo.IsFreeShippingEligible', 'Offers.Listings.DeliveryInfo.IsPrimeEligible', 'Offers.Listings.DeliveryInfo.ShippingCharges', 'Offers.Listings.IsBuyBoxWinner', 'Offers.Listings.LoyaltyPoints.Points', 'Offers.Listings.MerchantInfo', 'Offers.Listings.Price', 'Offers.Listings.ProgramEligibility.IsPrimeExclusive', 'Offers.Listings.ProgramEligibility.IsPrimePantry', 'Offers.Listings.Promotions', 'Offers.Listings.SavingBasis', 'Offers.Summaries.HighestPrice', 'Offers.Summaries.LowestPrice', 'Offers.Summaries.OfferCount', 'ParentASIN', 'RentalOffers.Listings.Availability.MaxOrderQuantity', 'RentalOffers.Listings.Availability.Message', 'RentalOffers.Listings.Availability.MinOrderQuantity', 'RentalOffers.Listings.Availability.Type', 'RentalOffers.Listings.BasePrice', 'RentalOffers.Listings.Condition', 'RentalOffers.Listings.Condition.SubCondition', 'RentalOffers.Listings.DeliveryInfo.IsAmazonFulfilled', 'RentalOffers.Listings.DeliveryInfo.IsFreeShippingEligible', 'RentalOffers.Listings.DeliveryInfo.IsPrimeEligible', 'RentalOffers.Listings.DeliveryInfo.ShippingCharges', 'RentalOffers.Listings.MerchantInfo']</em><a class="headerlink" href="#amazon.constant.ITEM_RESOURCES" title="Permalink to this definition">¶</a></dt>
+<dd><p>ITEM_RESOURCES values</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="amazon.constant.REGIONS">
+<code class="sig-prename descclassname">amazon.constant.</code><code class="sig-name descname">REGIONS</code><em class="property"> = {'AE': 'eu-west-1', 'AU': 'us-west-2', 'BR': 'us-east-1', 'CA': 'us-east-1', 'DE': 'eu-west-1', 'ES': 'eu-west-1', 'FR': 'eu-west-1', 'IN': 'eu-west-1', 'IT': 'eu-west-1', 'JP': 'us-west-2', 'MX': 'us-east-1', 'TR': 'eu-west-1', 'UK': 'eu-west-1', 'US': 'us-east-1'}</em><a class="headerlink" href="#amazon.constant.REGIONS" title="Permalink to this definition">¶</a></dt>
+<dd><p>REGIONS values</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="amazon.constant.SEARCH_RESOURCES">
+<code class="sig-prename descclassname">amazon.constant.</code><code class="sig-name descname">SEARCH_RESOURCES</code><em class="property"> = ['BrowseNodeInfo.BrowseNodes', 'BrowseNodeInfo.BrowseNodes.Ancestor', 'BrowseNodeInfo.BrowseNodes.SalesRank', 'BrowseNodeInfo.WebsiteSalesRank', 'Images.Primary.Small', 'Images.Primary.Medium', 'Images.Primary.Large', 'Images.Variants.Small', 'Images.Variants.Medium', 'Images.Variants.Large', 'ItemInfo.ByLineInfo', 'ItemInfo.ContentInfo', 'ItemInfo.ContentRating', 'ItemInfo.Classifications', 'ItemInfo.ExternalIds', 'ItemInfo.Features', 'ItemInfo.ManufactureInfo', 'ItemInfo.ProductInfo', 'ItemInfo.TechnicalInfo', 'ItemInfo.Title', 'ItemInfo.TradeInInfo', 'Offers.Listings.Availability.MaxOrderQuantity', 'Offers.Listings.Availability.Message', 'Offers.Listings.Availability.MinOrderQuantity', 'Offers.Listings.Availability.Type', 'Offers.Listings.Condition', 'Offers.Listings.Condition.SubCondition', 'Offers.Listings.DeliveryInfo.IsAmazonFulfilled', 'Offers.Listings.DeliveryInfo.IsFreeShippingEligible', 'Offers.Listings.DeliveryInfo.IsPrimeEligible', 'Offers.Listings.DeliveryInfo.ShippingCharges', 'Offers.Listings.IsBuyBoxWinner', 'Offers.Listings.LoyaltyPoints.Points', 'Offers.Listings.MerchantInfo', 'Offers.Listings.Price', 'Offers.Listings.ProgramEligibility.IsPrimeExclusive', 'Offers.Listings.ProgramEligibility.IsPrimePantry', 'Offers.Listings.Promotions', 'Offers.Listings.SavingBasis', 'Offers.Summaries.HighestPrice', 'Offers.Summaries.LowestPrice', 'Offers.Summaries.OfferCount', 'ParentASIN', 'RentalOffers.Listings.Availability.MaxOrderQuantity', 'RentalOffers.Listings.Availability.Message', 'RentalOffers.Listings.Availability.MinOrderQuantity', 'RentalOffers.Listings.Availability.Type', 'RentalOffers.Listings.BasePrice', 'RentalOffers.Listings.Condition', 'RentalOffers.Listings.Condition.SubCondition', 'RentalOffers.Listings.DeliveryInfo.IsAmazonFulfilled', 'RentalOffers.Listings.DeliveryInfo.IsFreeShippingEligible', 'RentalOffers.Listings.DeliveryInfo.IsPrimeEligible', 'RentalOffers.Listings.DeliveryInfo.ShippingCharges', 'RentalOffers.Listings.MerchantInfo', 'SearchRefinements']</em><a class="headerlink" href="#amazon.constant.SEARCH_RESOURCES" title="Permalink to this definition">¶</a></dt>
+<dd><p>SEARCH_RESOURCES values</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="amazon.constant.VARIATION_RESOURCES">
+<code class="sig-prename descclassname">amazon.constant.</code><code class="sig-name descname">VARIATION_RESOURCES</code><em class="property"> = ['BrowseNodeInfo.BrowseNodes', 'BrowseNodeInfo.BrowseNodes.Ancestor', 'BrowseNodeInfo.BrowseNodes.SalesRank', 'BrowseNodeInfo.WebsiteSalesRank', 'Images.Primary.Small', 'Images.Primary.Medium', 'Images.Primary.Large', 'Images.Variants.Small', 'Images.Variants.Medium', 'Images.Variants.Large', 'ItemInfo.ByLineInfo', 'ItemInfo.ContentInfo', 'ItemInfo.ContentRating', 'ItemInfo.Classifications', 'ItemInfo.ExternalIds', 'ItemInfo.Features', 'ItemInfo.ManufactureInfo', 'ItemInfo.ProductInfo', 'ItemInfo.TechnicalInfo', 'ItemInfo.Title', 'ItemInfo.TradeInInfo', 'Offers.Listings.Availability.MaxOrderQuantity', 'Offers.Listings.Availability.Message', 'Offers.Listings.Availability.MinOrderQuantity', 'Offers.Listings.Availability.Type', 'Offers.Listings.Condition', 'Offers.Listings.Condition.SubCondition', 'Offers.Listings.DeliveryInfo.IsAmazonFulfilled', 'Offers.Listings.DeliveryInfo.IsFreeShippingEligible', 'Offers.Listings.DeliveryInfo.IsPrimeEligible', 'Offers.Listings.DeliveryInfo.ShippingCharges', 'Offers.Listings.IsBuyBoxWinner', 'Offers.Listings.LoyaltyPoints.Points', 'Offers.Listings.MerchantInfo', 'Offers.Listings.Price', 'Offers.Listings.ProgramEligibility.IsPrimeExclusive', 'Offers.Listings.ProgramEligibility.IsPrimePantry', 'Offers.Listings.Promotions', 'Offers.Listings.SavingBasis', 'Offers.Summaries.HighestPrice', 'Offers.Summaries.LowestPrice', 'Offers.Summaries.OfferCount', 'ParentASIN', 'RentalOffers.Listings.Availability.MaxOrderQuantity', 'RentalOffers.Listings.Availability.Message', 'RentalOffers.Listings.Availability.MinOrderQuantity', 'RentalOffers.Listings.Availability.Type', 'RentalOffers.Listings.BasePrice', 'RentalOffers.Listings.Condition', 'RentalOffers.Listings.Condition.SubCondition', 'RentalOffers.Listings.DeliveryInfo.IsAmazonFulfilled', 'RentalOffers.Listings.DeliveryInfo.IsFreeShippingEligible', 'RentalOffers.Listings.DeliveryInfo.IsPrimeEligible', 'RentalOffers.Listings.DeliveryInfo.ShippingCharges', 'RentalOffers.Listings.MerchantInfo', 'VariationSummary.Price.HighestPrice', 'VariationSummary.Price.LowestPrice', 'VariationSummary.VariationDimension']</em><a class="headerlink" href="#amazon.constant.VARIATION_RESOURCES" title="Permalink to this definition">¶</a></dt>
+<dd><p>VARIATION_RESOURCES values</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Documentation for the Code</a><ul>
+<li><a class="reference internal" href="#module-amazon.paapi">paapi</a></li>
+<li><a class="reference internal" href="#module-amazon.entities">entities</a></li>
+<li><a class="reference internal" href="#module-amazon.exception">exception</a></li>
+<li><a class="reference internal" href="#module-amazon.constant">constant</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="advancedUsage.html"
+                        title="previous chapter">Advanced Usage</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/package.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="advancedUsage.html" title="Advanced Usage"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Amazon paapi5 1.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Alessandro Fiori.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.3.
+    </div>
+  </body>
+</html>

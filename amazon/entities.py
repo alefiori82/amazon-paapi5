@@ -1,9 +1,17 @@
+"""
+.. module:: entities
+
+"""
+
 import pprint
 import six
 from paapi5_python_sdk.item import Item
 from paapi5_python_sdk.browse_node import BrowseNode
 
 class AmazonProduct():
+    """
+        Class representing a product
+    """
 
     swagger_types = {
         'asin': 'str',
@@ -33,12 +41,18 @@ class AmazonProduct():
     
     @property
     def isDiscount(self):
+        """
+            return if the best offer has a discount
+        """
         if self.bestOffer.price.savings:
             return True
         return False
     
     @property
     def bestOffer(self):
+        """
+            return best offer information
+        """
         bestOffer = None
         if self.offers:
             if isinstance(self.offers.listings, list):
@@ -55,6 +69,9 @@ class AmazonProduct():
 
     @property
     def originalPrice(self):
+        """
+            return the price without discount
+        """
         if self.bestOffer.saving_basis:
             return self.bestOffer.saving_basis
         else:
@@ -63,18 +80,27 @@ class AmazonProduct():
 
     @property
     def isPrime(self):
+        """
+            return if the best offer is Prime eligible
+        """
         if self.bestOffer.delivery_info.is_prime_eligible != None:
             return self.bestOffer.delivery_info.is_prime_eligible
         return False
     
     @property
     def isFreeShipping(self):
+        """
+            return if the best offer is free shipping eligible
+        """
         if self.bestOffer.delivery_info.is_free_shipping_eligible != None:
             return self.bestOffer.delivery_info.is_free_shipping_eligible
         return False
 
     @property
     def isAmazonFulfilled(self):
+        """
+            return if the best offer is amazon fulfilled
+        """
         if self.bestOffer.delivery_info.is_amazon_fulfilled != None:
             return self.bestOffer.delivery_info.is_amazon_fulfilled
         return False
@@ -126,6 +152,9 @@ class AmazonProduct():
         return not self == other
 
 class AmazonBrowseNode():
+    """
+        Class representing a browse node
+    """
     swagger_types = {
         'ancestor': 'BrowseNodeAncestor',
         'children': 'BrowseNodeChildren',

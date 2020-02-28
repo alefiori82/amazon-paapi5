@@ -1,0 +1,910 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Responses &#8212; Amazon paapi5 1.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Advanced Usage" href="advancedUsage.html" />
+    <link rel="prev" title="Quick start" href="quickstart.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="advancedUsage.html" title="Advanced Usage"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="quickstart.html" title="Quick start"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Amazon paapi5 1.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="responses">
+<h1>Responses<a class="headerlink" href="#responses" title="Permalink to this headline">¶</a></h1>
+<p>All the response are structured as dictionary with <code class="docutils literal notranslate"><span class="pre">data</span></code> and <code class="docutils literal notranslate"><span class="pre">http_info</span></code> attributes.
+In the following we report some example of response returned by the methods</p>
+<p>Example of response returned by <em>search_items</em> or <em>get_variations</em> functions with http info:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">amazon</span><span class="o">.</span><span class="n">search_items</span><span class="p">(</span><span class="s1">&#39;harry potter&#39;</span><span class="p">,</span> <span class="n">http_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">item_count</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;asin&#39;</span><span class="p">:</span> <span class="s1">&#39;B07G3S3M9J&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;browse_node_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;browse_nodes&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;ancestor&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ancestor&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ancestor&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                                                <span class="s1">&#39;context_free_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Giochi &#39;</span>
+                                                                                     <span class="s1">&#39;e &#39;</span>
+                                                                                     <span class="s1">&#39;giocattoli&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;display_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Giochi &#39;</span>
+                                                                                <span class="s1">&#39;e &#39;</span>
+                                                                                <span class="s1">&#39;giocattoli&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;523997031&#39;</span><span class="p">},</span>
+                                                   <span class="s1">&#39;context_free_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Giochi &#39;</span>
+                                                                        <span class="s1">&#39;e &#39;</span>
+                                                                        <span class="s1">&#39;giocattoli&#39;</span><span class="p">,</span>
+                                                   <span class="s1">&#39;display_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Categorie&#39;</span><span class="p">,</span>
+                                                   <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;523998031&#39;</span><span class="p">},</span>
+                                      <span class="s1">&#39;children&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="s1">&#39;context_free_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Costruzioni&#39;</span><span class="p">,</span>
+                                      <span class="s1">&#39;display_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Costruzioni&#39;</span><span class="p">,</span>
+                                      <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;632623031&#39;</span><span class="p">,</span>
+                                      <span class="s1">&#39;is_root&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                                      <span class="s1">&#39;sales_rank&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}],</span>
+                    <span class="s1">&#39;website_sales_rank&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;context_free_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Giochi e &#39;</span>
+                                                                <span class="s1">&#39;giocattoli&#39;</span><span class="p">,</span>
+                                           <span class="s1">&#39;display_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Giochi e &#39;</span>
+                                                           <span class="s1">&#39;giocattoli&#39;</span><span class="p">,</span>
+                                           <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                           <span class="s1">&#39;sales_rank&#39;</span><span class="p">:</span> <span class="mi">80</span><span class="p">}},</span>
+    <span class="s1">&#39;detail_page_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.amazon.it/dp/B07G3S3M9J&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;images&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;primary&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;large&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51GeNtR5KJL.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">},</span>
+                        <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51GeNtR5KJL._SL160_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">},</span>
+                        <span class="s1">&#39;small&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51GeNtR5KJL._SL75_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">}},</span>
+            <span class="s1">&#39;variants&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;large&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51sBtbHCF+L.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">},</span>
+                            <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51sBtbHCF+L._SL160_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">},</span>
+                            <span class="s1">&#39;small&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51sBtbHCF+L._SL75_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">}},</span>
+                        <span class="p">{</span><span class="s1">&#39;large&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/510ff+eSzGL.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">},</span>
+                            <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/510ff+eSzGL._SL160_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">},</span>
+                            <span class="s1">&#39;small&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/510ff+eSzGL._SL75_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">}},</span>
+                        <span class="p">{</span><span class="s1">&#39;large&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/61EGnRPLBvL.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">},</span>
+                            <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/61EGnRPLBvL._SL160_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">},</span>
+                            <span class="s1">&#39;small&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/61EGnRPLBvL._SL75_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">}},</span>
+                        <span class="p">{</span><span class="s1">&#39;large&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51gKY6PuT3L.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">},</span>
+                            <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51gKY6PuT3L._SL160_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">},</span>
+                            <span class="s1">&#39;small&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51gKY6PuT3L._SL75_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">}},</span>
+                        <span class="p">{</span><span class="s1">&#39;large&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51aariwEhHL.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">},</span>
+                            <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51aariwEhHL._SL160_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">},</span>
+                            <span class="s1">&#39;small&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51aariwEhHL._SL75_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">}}]},</span>
+    <span class="s1">&#39;item_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;by_line_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;brand&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;LEGO&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Brand&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+                                    <span class="s1">&#39;contributors&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                    <span class="s1">&#39;manufacturer&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;LEGO&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Manufacturer&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">}},</span>
+                    <span class="s1">&#39;classifications&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;binding&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Giocattolo&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Binding&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+                                        <span class="s1">&#39;product_group&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Giocattolo&#39;</span><span class="p">,</span>
+                                                        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;ProductGroup&#39;</span><span class="p">,</span>
+                                                        <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">}},</span>
+                    <span class="s1">&#39;content_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;edition&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                    <span class="s1">&#39;languages&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_values&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Italiano&#39;</span><span class="p">,</span>
+                                                                        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Manuale&#39;</span><span class="p">},</span>
+                                                                    <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Tedesco&#39;</span><span class="p">,</span>
+                                                                        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Manuale&#39;</span><span class="p">},</span>
+                                                                    <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Francese&#39;</span><span class="p">,</span>
+                                                                        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Manuale&#39;</span><span class="p">},</span>
+                                                                    <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Inglese&#39;</span><span class="p">,</span>
+                                                                        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Manuale&#39;</span><span class="p">},</span>
+                                                                    <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Spagnolo&#39;</span><span class="p">,</span>
+                                                                        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Manuale&#39;</span><span class="p">},</span>
+                                                                    <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Spagnolo&#39;</span><span class="p">,</span>
+                                                                        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Sconosciuto&#39;</span><span class="p">}],</span>
+                                                    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Language&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+                                    <span class="s1">&#39;pages_count&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                    <span class="s1">&#39;publication_date&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                    <span class="s1">&#39;content_rating&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s1">&#39;external_ids&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ea_ns&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_values&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;5702016368697&#39;</span><span class="p">],</span>
+                                                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;EAN&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;en_US&#39;</span><span class="p">},</span>
+                                    <span class="s1">&#39;isb_ns&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                    <span class="s1">&#39;up_cs&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                    <span class="s1">&#39;features&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_values&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Include 8 minifigure Harry &#39;</span>
+                                                    <span class="s1">&#39;Potter&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;Tutte i personaggi sono dotati &#39;</span>
+                                                    <span class="s1">&#39;di bacchette e dei costumi del &#39;</span>
+                                                    <span class="s1">&#39;Ballo del Ceppo&#39;</span><span class="p">,</span>
+                                                    <span class="s2">&quot;La sala dell&#39;ingresso include &quot;</span>
+                                                    <span class="s1">&#39;una cassa e il calice di fuoco&#39;</span><span class="p">,</span>
+                                                    <span class="s2">&quot;L&#39;ala dell&#39;ospedale contiene 2 &quot;</span>
+                                                    <span class="s1">&#39;letti e 2 lampade costruibili&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;Il Bagno dei Prefetti contiene &#39;</span>
+                                                    <span class="s1">&#39;una vetrata con sirenetta&#39;</span><span class="p">],</span>
+                                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Features&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+                    <span class="s1">&#39;manufacture_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;item_part_number&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;75948&#39;</span><span class="p">,</span>
+                                                            <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;PartNumber&#39;</span><span class="p">,</span>
+                                                            <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;en_US&#39;</span><span class="p">},</span>
+                                        <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;75948&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Model&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;en_US&#39;</span><span class="p">},</span>
+                                        <span class="s1">&#39;warranty&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;2 anni&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Warranty&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">}},</span>
+                    <span class="s1">&#39;product_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Multicolore&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Color&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+                                    <span class="s1">&#39;is_adult_product&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                                                        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;IsAdultProduct&#39;</span><span class="p">,</span>
+                                                        <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;en_US&#39;</span><span class="p">},</span>
+                                    <span class="s1">&#39;item_dimensions&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="mf">0.148818897486</span><span class="p">,</span>
+                                                                    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Height&#39;</span><span class="p">,</span>
+                                                                    <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">,</span>
+                                                                    <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;Pollici&#39;</span><span class="p">},</span>
+                                                        <span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="mf">0.139370078598</span><span class="p">,</span>
+                                                                    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Length&#39;</span><span class="p">,</span>
+                                                                    <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">,</span>
+                                                                    <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;Pollici&#39;</span><span class="p">},</span>
+                                                        <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="mf">3.1746565728</span><span class="p">,</span>
+                                                                    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Weight&#39;</span><span class="p">,</span>
+                                                                    <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">,</span>
+                                                                    <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;Libbre&#39;</span><span class="p">},</span>
+                                                        <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="mf">0.037007873978</span><span class="p">,</span>
+                                                                    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Width&#39;</span><span class="p">,</span>
+                                                                    <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">,</span>
+                                                                    <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;Pollici&#39;</span><span class="p">}},</span>
+                                    <span class="s1">&#39;release_date&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;2019-06-01T00:00:01Z&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;ReleaseDate&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;en_US&#39;</span><span class="p">},</span>
+                                    <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                    <span class="s1">&#39;unit_count&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                    <span class="s1">&#39;technical_info&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;LEGO- Harry Potter La Torre &#39;</span>
+                                                <span class="s2">&quot;dell&#39;Orologio di Hogwarts Set di &quot;</span>
+                                                <span class="s1">&#39;Costruzioni su Tre Livelli con 8 &#39;</span>
+                                                <span class="s1">&#39;Minifigure, per Ragazzi +9 Anni e &#39;</span>
+                                                <span class="s1">&#39;per Tutti Gli Appassionati, &#39;</span>
+                                                <span class="s1">&#39;Multicolore, 75948&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Title&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+                    <span class="s1">&#39;trade_in_info&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+    <span class="s1">&#39;offers&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;listings&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;availability&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;max_order_quantity&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                                                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;Disponibilità &#39;</span>
+                                                            <span class="s1">&#39;immediata.&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;min_order_quantity&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                                                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Now&#39;</span><span class="p">},</span>
+                                <span class="s1">&#39;condition&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                            <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                            <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                            <span class="s1">&#39;sub_condition&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                                                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                                                <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                                                <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">},</span>
+                                            <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">},</span>
+                                <span class="s1">&#39;delivery_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;is_amazon_fulfilled&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                                                <span class="s1">&#39;is_free_shipping_eligible&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                                                <span class="s1">&#39;is_prime_eligible&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                                                <span class="s1">&#39;shipping_charges&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;BZOgD2s</span><span class="si">%2F</span><span class="s1">As0Re7WbcW0ve4vulr8ukLPxw65HiBchw3d11e%2BszD4s8bZeXLRB7fpB3hPdy6KS90eb5hebBqDkGZPCVIiMSfGC%2BnbUfiBFeWzeEopDeu6OpeLhgqFcSc1H&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;is_buy_box_winner&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                                <span class="s1">&#39;loyalty_points&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                <span class="s1">&#39;merchant_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;default_shipping_country&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;A11IL2PNWYJU7H&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Amazon.it&#39;</span><span class="p">},</span>
+                                <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">69.3</span><span class="p">,</span>
+                                        <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                        <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;69,30</span><span class="se">\xa0</span><span class="s1">€&#39;</span><span class="p">,</span>
+                                        <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                        <span class="s1">&#39;savings&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">30.69</span><span class="p">,</span>
+                                                    <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;30,69</span><span class="se">\xa0</span><span class="s1">€ &#39;</span>
+                                                                        <span class="s1">&#39;(31%)&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;percentage&#39;</span><span class="p">:</span> <span class="mi">31</span><span class="p">,</span>
+                                                    <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}},</span>
+                                <span class="s1">&#39;program_eligibility&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;is_prime_exclusive&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                                                        <span class="s1">&#39;is_prime_pantry&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+                                <span class="s1">&#39;promotions&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                <span class="s1">&#39;saving_basis&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">99.99</span><span class="p">,</span>
+                                                <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;99,99</span><span class="se">\xa0</span><span class="s1">€&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                                <span class="s1">&#39;savings&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                                <span class="s1">&#39;violates_map&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}],</span>
+                <span class="s1">&#39;summaries&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;condition&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                            <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                            <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                            <span class="s1">&#39;sub_condition&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                            <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">},</span>
+                                <span class="s1">&#39;highest_price&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">211.7</span><span class="p">,</span>
+                                                <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;211,70</span><span class="se">\xa0</span><span class="s1">€&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                                <span class="s1">&#39;savings&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                                <span class="s1">&#39;lowest_price&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">65.3</span><span class="p">,</span>
+                                                <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;65,30</span><span class="se">\xa0</span><span class="s1">€&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                                <span class="s1">&#39;savings&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                                <span class="s1">&#39;offer_count&#39;</span><span class="p">:</span> <span class="mi">103</span><span class="p">},</span>
+                                <span class="p">{</span><span class="s1">&#39;condition&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                            <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                            <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                            <span class="s1">&#39;sub_condition&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                            <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;Collectible&#39;</span><span class="p">},</span>
+                                <span class="s1">&#39;highest_price&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">149.65</span><span class="p">,</span>
+                                                <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;149,65</span><span class="se">\xa0</span><span class="s1">€&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                                <span class="s1">&#39;savings&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                                <span class="s1">&#39;lowest_price&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">149.65</span><span class="p">,</span>
+                                                <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;149,65</span><span class="se">\xa0</span><span class="s1">€&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                                <span class="s1">&#39;savings&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                                <span class="s1">&#39;offer_count&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}]},</span>
+    <span class="s1">&#39;parent_asin&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;rental_offers&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;variation_attributes&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;asin&#39;</span><span class="p">:</span> <span class="s1">&#39;B07B2Y1DZ6&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;browse_node_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;browse_nodes&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;ancestor&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ancestor&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ancestor&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ancestor&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ancestor&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                                                                          <span class="s1">&#39;context_free_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Illuminazione&#39;</span><span class="p">,</span>
+                                                                                          <span class="s1">&#39;display_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Illuminazione&#39;</span><span class="p">,</span>
+                                                                                          <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;1571292031&#39;</span><span class="p">},</span>
+                                                                             <span class="s1">&#39;context_free_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Illuminazione&#39;</span><span class="p">,</span>
+                                                                             <span class="s1">&#39;display_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Categorie&#39;</span><span class="p">,</span>
+                                                                             <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;1571293031&#39;</span><span class="p">},</span>
+                                                                <span class="s1">&#39;context_free_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Illuminazione &#39;</span>
+                                                                                     <span class="s1">&#39;per &#39;</span>
+                                                                                     <span class="s1">&#39;interni&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;display_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Illuminazione &#39;</span>
+                                                                                <span class="s1">&#39;per &#39;</span>
+                                                                                <span class="s1">&#39;interni&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;1849538031&#39;</span><span class="p">},</span>
+                                                   <span class="s1">&#39;context_free_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Lampade&#39;</span><span class="p">,</span>
+                                                   <span class="s1">&#39;display_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Lampade&#39;</span><span class="p">,</span>
+                                                   <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;1904583031&#39;</span><span class="p">},</span>
+                                      <span class="s1">&#39;children&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="s1">&#39;context_free_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Lampade da &#39;</span>
+                                                           <span class="s1">&#39;tavolo e &#39;</span>
+                                                           <span class="s1">&#39;abat-jour&#39;</span><span class="p">,</span>
+                                      <span class="s1">&#39;display_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Lampade da tavolo e &#39;</span>
+                                                      <span class="s1">&#39;abat-jour&#39;</span><span class="p">,</span>
+                                      <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;1904589031&#39;</span><span class="p">,</span>
+                                      <span class="s1">&#39;is_root&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                                      <span class="s1">&#39;sales_rank&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">}],</span>
+                    <span class="s1">&#39;website_sales_rank&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;context_free_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Illuminazione&#39;</span><span class="p">,</span>
+                                           <span class="s1">&#39;display_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Illuminazione&#39;</span><span class="p">,</span>
+                                           <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                           <span class="s1">&#39;sales_rank&#39;</span><span class="p">:</span> <span class="mi">214</span><span class="p">}},</span>
+    <span class="s1">&#39;detail_page_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.amazon.it/dp/B07B2Y1DZ6&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;images&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;primary&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;large&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/31fapEjYoWL.jpg&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">},</span>
+                      <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+                                 <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/31fapEjYoWL._SL160_.jpg&#39;</span><span class="p">,</span>
+                                 <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">},</span>
+                      <span class="s1">&#39;small&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+                                <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/31fapEjYoWL._SL75_.jpg&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">}},</span>
+          <span class="s1">&#39;variants&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;large&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                  <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/41dxJmIYQhL.jpg&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">},</span>
+                        <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+                                   <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/41dxJmIYQhL._SL160_.jpg&#39;</span><span class="p">,</span>
+                                   <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">},</span>
+                        <span class="s1">&#39;small&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+                                  <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/41dxJmIYQhL._SL75_.jpg&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">}},</span>
+                       <span class="p">{</span><span class="s1">&#39;large&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                  <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/41ACSN4bfFL.jpg&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">},</span>
+                        <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+                                   <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/41ACSN4bfFL._SL160_.jpg&#39;</span><span class="p">,</span>
+                                   <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">},</span>
+                        <span class="s1">&#39;small&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+                                  <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/41ACSN4bfFL._SL75_.jpg&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">}},</span>
+                       <span class="p">{</span><span class="s1">&#39;large&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                  <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/41dSxBII1GL.jpg&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">},</span>
+                        <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+                                   <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/41dSxBII1GL._SL160_.jpg&#39;</span><span class="p">,</span>
+                                   <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">},</span>
+                        <span class="s1">&#39;small&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+                                  <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/41dSxBII1GL._SL75_.jpg&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">}}]},</span>
+        <span class="s1">&#39;item_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;by_line_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;brand&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Harry Potter&#39;</span><span class="p">,</span>
+                                        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Brand&#39;</span><span class="p">,</span>
+                                        <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+                              <span class="s1">&#39;contributors&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;No Name&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;Designer&#39;</span><span class="p">}],</span>
+                              <span class="s1">&#39;manufacturer&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Harry &#39;</span>
+                                                                <span class="s1">&#39;Potter&#39;</span><span class="p">,</span>
+                                               <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Manufacturer&#39;</span><span class="p">,</span>
+                                               <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">}},</span>
+             <span class="s1">&#39;classifications&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;binding&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Cucina&#39;</span><span class="p">,</span>
+                                             <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Binding&#39;</span><span class="p">,</span>
+                                             <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+                                 <span class="s1">&#39;product_group&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Casa&#39;</span><span class="p">,</span>
+                                                   <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;ProductGroup&#39;</span><span class="p">,</span>
+                                                   <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">}},</span>
+             <span class="s1">&#39;content_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;edition&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                              <span class="s1">&#39;languages&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_values&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Tedesco&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Sconosciuto&#39;</span><span class="p">}],</span>
+                                            <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Language&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+                              <span class="s1">&#39;pages_count&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                              <span class="s1">&#39;publication_date&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+             <span class="s1">&#39;content_rating&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+             <span class="s1">&#39;external_ids&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ea_ns&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_values&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;5055964712563&#39;</span><span class="p">],</span>
+                                        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;EAN&#39;</span><span class="p">,</span>
+                                        <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;en_US&#39;</span><span class="p">},</span>
+                              <span class="s1">&#39;isb_ns&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                              <span class="s1">&#39;up_cs&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+             <span class="s1">&#39;features&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_values&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Lampada da tavolo di Harry &#39;</span>
+                                             <span class="s1">&#39;Potter con licenza ufficiale&#39;</span><span class="p">,</span>
+                                             <span class="s2">&quot;Boccino d&#39;oro sotto campana &quot;</span>
+                                             <span class="s1">&#39;con logo HP&#39;</span><span class="p">,</span>
+                                             <span class="s1">&#39;Funzione leggera al tocco&#39;</span><span class="p">,</span>
+                                             <span class="s1">&#39;Funzionamento USB (cavo &#39;</span>
+                                             <span class="s1">&#39;incluso)&#39;</span><span class="p">,</span>
+                                             <span class="s1">&#39;Altezza 21 cm, diametro 13, 5 &#39;</span>
+                                             <span class="s1">&#39;cm&#39;</span><span class="p">],</span>
+                          <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Features&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+             <span class="s1">&#39;manufacture_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;item_part_number&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;PP3906HP&#39;</span><span class="p">,</span>
+                                                       <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;PartNumber&#39;</span><span class="p">,</span>
+                                                       <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;en_US&#39;</span><span class="p">},</span>
+                                  <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;PP3906HPV2&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Model&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;en_US&#39;</span><span class="p">},</span>
+                                  <span class="s1">&#39;warranty&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+             <span class="s1">&#39;product_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Oro&#39;</span><span class="p">,</span>
+                                        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Color&#39;</span><span class="p">,</span>
+                                        <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+                              <span class="s1">&#39;is_adult_product&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                                                   <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;IsAdultProduct&#39;</span><span class="p">,</span>
+                                                   <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;en_US&#39;</span><span class="p">},</span>
+                              <span class="s1">&#39;item_dimensions&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="mf">7.086614166</span><span class="p">,</span>
+                                                             <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Height&#39;</span><span class="p">,</span>
+                                                             <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">,</span>
+                                                             <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;Pollici&#39;</span><span class="p">},</span>
+                                                  <span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="mf">4.724409444</span><span class="p">,</span>
+                                                             <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Length&#39;</span><span class="p">,</span>
+                                                             <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">,</span>
+                                                             <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;Pollici&#39;</span><span class="p">},</span>
+                                                  <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="mf">0.5291094288</span><span class="p">,</span>
+                                                             <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Weight&#39;</span><span class="p">,</span>
+                                                             <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">,</span>
+                                                             <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;Libbre&#39;</span><span class="p">},</span>
+                                                  <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="mf">4.724409444</span><span class="p">,</span>
+                                                            <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Width&#39;</span><span class="p">,</span>
+                                                            <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">,</span>
+                                                            <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;Pollici&#39;</span><span class="p">}},</span>
+                              <span class="s1">&#39;release_date&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;2018-12-22T00:00:01Z&#39;</span><span class="p">,</span>
+                                               <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;ReleaseDate&#39;</span><span class="p">,</span>
+                                               <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;en_US&#39;</span><span class="p">},</span>
+                              <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Standard&#39;</span><span class="p">,</span>
+                                       <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Size&#39;</span><span class="p">,</span>
+                                       <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+                              <span class="s1">&#39;unit_count&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                                             <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;NumberOfItems&#39;</span><span class="p">,</span>
+                                             <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;en_US&#39;</span><span class="p">}},</span>
+             <span class="s1">&#39;technical_info&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+             <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Harry Potter Lampada Boccino 2.5 W, &#39;</span>
+                                        <span class="s1">&#39;Oro&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Title&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+             <span class="s1">&#39;trade_in_info&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+        <span class="s1">&#39;offers&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;listings&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;availability&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;max_order_quantity&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                         <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;Disponibilità &#39;</span>
+                                                    <span class="s1">&#39;immediata.&#39;</span><span class="p">,</span>
+                                         <span class="s1">&#39;min_order_quantity&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                                         <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Now&#39;</span><span class="p">},</span>
+                        <span class="s1">&#39;condition&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="s1">&#39;sub_condition&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                                        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                                        <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                                        <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">},</span>
+                                      <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">},</span>
+                        <span class="s1">&#39;delivery_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;is_amazon_fulfilled&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                                          <span class="s1">&#39;is_free_shipping_eligible&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                                          <span class="s1">&#39;is_prime_eligible&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                                          <span class="s1">&#39;shipping_charges&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;BZOgD2s</span><span class="si">%2F</span><span class="s1">As0Re7WbcW0ve4</span><span class="si">%2F%2F</span><span class="s1">GEWQQwg6qLo3valV0OGJDYi68mKnrNKLkw7j14SE3lAkUWdIgEC1mdebih%2BojTY</span><span class="si">%2F</span><span class="s1">SUZxkbQVZZZmpXURJkgCaltM2wl53rZupPw1y2Wc&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;is_buy_box_winner&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                        <span class="s1">&#39;loyalty_points&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                        <span class="s1">&#39;merchant_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;default_shipping_country&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                          <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;A11IL2PNWYJU7H&#39;</span><span class="p">,</span>
+                                          <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Amazon.it&#39;</span><span class="p">},</span>
+                        <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">21.63</span><span class="p">,</span>
+                                  <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;21,63</span><span class="se">\xa0</span><span class="s1">€&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                  <span class="s1">&#39;savings&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">4.17</span><span class="p">,</span>
+                                              <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                              <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;4,17</span><span class="se">\xa0</span><span class="s1">€ &#39;</span>
+                                                                <span class="s1">&#39;(16%)&#39;</span><span class="p">,</span>
+                                              <span class="s1">&#39;percentage&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+                                              <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}},</span>
+                        <span class="s1">&#39;program_eligibility&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;is_prime_exclusive&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                                                <span class="s1">&#39;is_prime_pantry&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+                        <span class="s1">&#39;promotions&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                        <span class="s1">&#39;saving_basis&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">25.8</span><span class="p">,</span>
+                                         <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                         <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;25,80</span><span class="se">\xa0</span><span class="s1">€&#39;</span><span class="p">,</span>
+                                         <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                         <span class="s1">&#39;savings&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                        <span class="s1">&#39;violates_map&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}],</span>
+          <span class="s1">&#39;summaries&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;condition&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                       <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                       <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                       <span class="s1">&#39;sub_condition&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                       <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">},</span>
+                         <span class="s1">&#39;highest_price&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">49.87</span><span class="p">,</span>
+                                           <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                           <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;49,87</span><span class="se">\xa0</span><span class="s1">€&#39;</span><span class="p">,</span>
+                                           <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                           <span class="s1">&#39;savings&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                         <span class="s1">&#39;lowest_price&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">17.35</span><span class="p">,</span>
+                                          <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                          <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;17,35</span><span class="se">\xa0</span><span class="s1">€&#39;</span><span class="p">,</span>
+                                          <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                          <span class="s1">&#39;savings&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                         <span class="s1">&#39;offer_count&#39;</span><span class="p">:</span> <span class="mi">33</span><span class="p">},</span>
+                        <span class="p">{</span><span class="s1">&#39;condition&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                       <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                       <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                       <span class="s1">&#39;sub_condition&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                       <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;Used&#39;</span><span class="p">},</span>
+                         <span class="s1">&#39;highest_price&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">16.98</span><span class="p">,</span>
+                                           <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                           <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;16,98</span><span class="se">\xa0</span><span class="s1">€&#39;</span><span class="p">,</span>
+                                           <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                           <span class="s1">&#39;savings&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                         <span class="s1">&#39;lowest_price&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">15.25</span><span class="p">,</span>
+                                          <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                          <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;15,25</span><span class="se">\xa0</span><span class="s1">€&#39;</span><span class="p">,</span>
+                                          <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                          <span class="s1">&#39;savings&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                         <span class="s1">&#39;offer_count&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">}]},</span>
+    <span class="s1">&#39;parent_asin&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;rental_offers&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;variation_attributes&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}],</span>
+<span class="s1">&#39;http_info&#39;</span><span class="p">:</span> <span class="n">HTTPHeaderDict</span><span class="p">({</span><span class="s1">&#39;Server&#39;</span><span class="p">:</span> <span class="s1">&#39;Server&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="s1">&#39;Fri, 28 Feb 2020 11:32:14 GMT&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Content-Length&#39;</span><span class="p">:</span> <span class="s1">&#39;13235&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Connection&#39;</span><span class="p">:</span> <span class="s1">&#39;keep-alive&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;x-amzn-RequestId&#39;</span><span class="p">:</span> <span class="s1">&#39;fb57b868-f8f4-4bf4-bead-7fd244a32a23&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Vary&#39;</span><span class="p">:</span> <span class="s1">&#39;Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;x-amz-rid&#39;</span><span class="p">:</span> <span class="s1">&#39;XTCQ8579N8GGWXXQTKV1&#39;</span><span class="p">})}</span>
+</pre></div>
+</div>
+<p>Example of response returned by <em>get_browse_nodes</em> functions with http info:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">amazon</span><span class="o">.</span><span class="n">get_browse_nodes</span><span class="p">([</span><span class="s1">&#39;632623031&#39;</span><span class="p">],</span> <span class="n">http_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;632623031&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ancestor&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ancestor&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ancestor&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                         <span class="s1">&#39;context_free_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Giochi e giocattoli&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;display_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Giochi e giocattoli&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;523997031&#39;</span><span class="p">},</span>
+            <span class="s1">&#39;context_free_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Giochi e giocattoli&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;display_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Categorie&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;523998031&#39;</span><span class="p">},</span>
+    <span class="s1">&#39;children&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;context_free_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Costruzioni&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;display_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Costruzioni&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;632623031&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;is_root&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s1">&#39;sales_rank&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}},</span>
+<span class="s1">&#39;http_info&#39;</span><span class="p">:</span> <span class="n">HTTPHeaderDict</span><span class="p">({</span><span class="s1">&#39;Server&#39;</span><span class="p">:</span> <span class="s1">&#39;Server&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="s1">&#39;Fri, 28 Feb 2020 11:36:38 GMT&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Content-Length&#39;</span><span class="p">:</span> <span class="s1">&#39;335&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Connection&#39;</span><span class="p">:</span> <span class="s1">&#39;keep-alive&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;x-amzn-RequestId&#39;</span><span class="p">:</span> <span class="s1">&#39;a7dfa2dc-90a0-445c-bf20-68cf0bb2a41e&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Vary&#39;</span><span class="p">:</span> <span class="s1">&#39;Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;x-amz-rid&#39;</span><span class="p">:</span> <span class="s1">&#39;97RSFDPC6QWQS212844Z&#39;</span><span class="p">})</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Example of response returned by <em>get_items</em> functions with http info:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">amazon</span><span class="o">.</span><span class="n">get_items</span><span class="p">([</span><span class="s1">&#39;B07G3S3M9J&#39;</span><span class="p">],</span> <span class="n">http_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span>
+    <span class="p">{</span><span class="s1">&#39;B07G3S3M9J&#39;</span><span class="p">:</span>
+    <span class="p">{</span><span class="s1">&#39;asin&#39;</span><span class="p">:</span> <span class="s1">&#39;B07G3S3M9J&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;browse_node_info&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;browse_nodes&#39;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span><span class="s1">&#39;ancestor&#39;</span><span class="p">:</span>
+                        <span class="p">{</span><span class="s1">&#39;ancestor&#39;</span><span class="p">:</span>
+                            <span class="p">{</span><span class="s1">&#39;ancestor&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                <span class="s1">&#39;context_free_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Giochi &#39;</span>
+                                                    <span class="s1">&#39;e &#39;</span>
+                                                    <span class="s1">&#39;giocattoli&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;display_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Giochi &#39;</span>
+                                                <span class="s1">&#39;e &#39;</span>
+                                                <span class="s1">&#39;giocattoli&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;523997031&#39;</span><span class="p">},</span>
+                                <span class="s1">&#39;context_free_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Giochi &#39;</span>
+                                                    <span class="s1">&#39;e &#39;</span>
+                                                    <span class="s1">&#39;giocattoli&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;display_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Categorie&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;523998031&#39;</span><span class="p">},</span>
+                            <span class="s1">&#39;children&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                            <span class="s1">&#39;context_free_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Costruzioni&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;display_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Costruzioni&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;632623031&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;is_root&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                            <span class="s1">&#39;sales_rank&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+                    <span class="p">],</span>
+            <span class="s1">&#39;website_sales_rank&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;context_free_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Giochi e &#39;</span>
+                                <span class="s1">&#39;giocattoli&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;display_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Giochi e &#39;</span>
+                            <span class="s1">&#39;giocattoli&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;sales_rank&#39;</span><span class="p">:</span> <span class="mi">80</span><span class="p">}</span>
+        <span class="p">},</span>
+    <span class="s1">&#39;detail_page_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.amazon.it/dp/B07G3S3M9J&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;images&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;primary&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;large&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51GeNtR5KJL.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">},</span>
+                        <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51GeNtR5KJL._SL160_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">},</span>
+                        <span class="s1">&#39;small&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51GeNtR5KJL._SL75_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">}},</span>
+            <span class="s1">&#39;variants&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;large&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51sBtbHCF+L.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">},</span>
+                            <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51sBtbHCF+L._SL160_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">},</span>
+                            <span class="s1">&#39;small&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51sBtbHCF+L._SL75_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">}},</span>
+                        <span class="p">{</span><span class="s1">&#39;large&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/510ff+eSzGL.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">},</span>
+                            <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/510ff+eSzGL._SL160_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">},</span>
+                            <span class="s1">&#39;small&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/510ff+eSzGL._SL75_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">}},</span>
+                        <span class="p">{</span><span class="s1">&#39;large&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/61EGnRPLBvL.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">},</span>
+                            <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/61EGnRPLBvL._SL160_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">},</span>
+                            <span class="s1">&#39;small&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/61EGnRPLBvL._SL75_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">}},</span>
+                        <span class="p">{</span><span class="s1">&#39;large&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51gKY6PuT3L.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">},</span>
+                            <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51gKY6PuT3L._SL160_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">},</span>
+                            <span class="s1">&#39;small&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51gKY6PuT3L._SL75_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">}},</span>
+                        <span class="p">{</span><span class="s1">&#39;large&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51aariwEhHL.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">},</span>
+                            <span class="s1">&#39;medium&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51aariwEhHL._SL160_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">160</span><span class="p">},</span>
+                            <span class="s1">&#39;small&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+                                    <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://m.media-amazon.com/images/I/51aariwEhHL._SL75_.jpg&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">}}]},</span>
+    <span class="s1">&#39;item_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;by_line_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;brand&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;LEGO&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Brand&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+                                <span class="s1">&#39;contributors&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                <span class="s1">&#39;manufacturer&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;LEGO&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Manufacturer&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">}},</span>
+                <span class="s1">&#39;classifications&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;binding&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Giocattolo&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Binding&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+                                    <span class="s1">&#39;product_group&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Giocattolo&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;ProductGroup&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">}},</span>
+                <span class="s1">&#39;content_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;edition&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                <span class="s1">&#39;languages&#39;</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="s1">&#39;display_values&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Italiano&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Manuale&#39;</span><span class="p">},</span>
+                                                            <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Tedesco&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Manuale&#39;</span><span class="p">},</span>
+                                                            <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Francese&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Manuale&#39;</span><span class="p">},</span>
+                                                            <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Inglese&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Manuale&#39;</span><span class="p">},</span>
+                                                            <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Spagnolo&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Manuale&#39;</span><span class="p">},</span>
+                                                            <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Spagnolo&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Sconosciuto&#39;</span><span class="p">}],</span>
+                                    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Language&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+                                <span class="s1">&#39;pages_count&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                <span class="s1">&#39;publication_date&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                <span class="s1">&#39;content_rating&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s1">&#39;external_ids&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ea_ns&#39;</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="s1">&#39;display_values&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;5702016368697&#39;</span><span class="p">],</span>
+                                    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;EAN&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;en_US&#39;</span><span class="p">},</span>
+                                <span class="s1">&#39;isb_ns&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                <span class="s1">&#39;up_cs&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                <span class="s1">&#39;features&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_values&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Include 8 minifigure Harry &#39;</span>
+                                                <span class="s1">&#39;Potter&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;Tutte i personaggi sono dotati &#39;</span>
+                                                <span class="s1">&#39;di bacchette e dei costumi del &#39;</span>
+                                                <span class="s1">&#39;Ballo del Ceppo&#39;</span><span class="p">,</span>
+                                                <span class="s2">&quot;La sala dell&#39;ingresso include &quot;</span>
+                                                <span class="s1">&#39;una cassa e il calice di fuoco&#39;</span><span class="p">,</span>
+                                                <span class="s2">&quot;L&#39;ala dell&#39;ospedale contiene 2 &quot;</span>
+                                                <span class="s1">&#39;letti e 2 lampade costruibili&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;Il Bagno dei Prefetti contiene &#39;</span>
+                                                <span class="s1">&#39;una vetrata con sirenetta&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Features&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+                <span class="s1">&#39;manufacture_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;item_part_number&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;75948&#39;</span><span class="p">,</span>
+                                                        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;PartNumber&#39;</span><span class="p">,</span>
+                                                        <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;en_US&#39;</span><span class="p">},</span>
+                                    <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;75948&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Model&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;en_US&#39;</span><span class="p">},</span>
+                                    <span class="s1">&#39;warranty&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;2 anni&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Warranty&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">}},</span>
+                <span class="s1">&#39;product_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;Multicolore&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Color&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+                                <span class="s1">&#39;is_adult_product&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                                                    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;IsAdultProduct&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;en_US&#39;</span><span class="p">},</span>
+                                <span class="s1">&#39;item_dimensions&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="mf">0.148818897486</span><span class="p">,</span>
+                                                                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Height&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;Pollici&#39;</span><span class="p">},</span>
+                                                    <span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="mf">0.139370078598</span><span class="p">,</span>
+                                                                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Length&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;Pollici&#39;</span><span class="p">},</span>
+                                                    <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="mf">3.1746565728</span><span class="p">,</span>
+                                                                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Weight&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;Libbre&#39;</span><span class="p">},</span>
+                                                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="mf">0.037007873978</span><span class="p">,</span>
+                                                                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Width&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">,</span>
+                                                                <span class="s1">&#39;unit&#39;</span><span class="p">:</span> <span class="s1">&#39;Pollici&#39;</span><span class="p">}},</span>
+                                <span class="s1">&#39;release_date&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;2019-06-01T00:00:01Z&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;ReleaseDate&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;en_US&#39;</span><span class="p">},</span>
+                                <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                <span class="s1">&#39;unit_count&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                <span class="s1">&#39;technical_info&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="s1">&#39;LEGO- Harry Potter La Torre &#39;</span>
+                                            <span class="s2">&quot;dell&#39;Orologio di Hogwarts Set di &quot;</span>
+                                            <span class="s1">&#39;Costruzioni su Tre Livelli con 8 &#39;</span>
+                                            <span class="s1">&#39;Minifigure, per Ragazzi +9 Anni e &#39;</span>
+                                            <span class="s1">&#39;per Tutti Gli Appassionati, &#39;</span>
+                                            <span class="s1">&#39;Multicolore, 75948&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Title&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="s1">&#39;it_IT&#39;</span><span class="p">},</span>
+                <span class="s1">&#39;trade_in_info&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+    <span class="s1">&#39;offers&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;listings&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;availability&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;max_order_quantity&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                                            <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;Disponibilità &#39;</span>
+                                                        <span class="s1">&#39;immediata.&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;min_order_quantity&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                                            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Now&#39;</span><span class="p">},</span>
+                            <span class="s1">&#39;condition&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                        <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                        <span class="s1">&#39;sub_condition&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                                            <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                                            <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                                            <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">},</span>
+                                        <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">},</span>
+                            <span class="s1">&#39;delivery_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;is_amazon_fulfilled&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                                            <span class="s1">&#39;is_free_shipping_eligible&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                                            <span class="s1">&#39;is_prime_eligible&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                                            <span class="s1">&#39;shipping_charges&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;lOwRr1eEQx8psfvHQVlQy%2BjVZ1JPx256n</span><span class="si">%2F</span><span class="s1">O8Ah75w7kK1j3fqgsHi</span><span class="si">%2F</span><span class="s1">n0SbqxDYb</span><span class="si">%2F</span><span class="s1">7m2%2Bbrzd5kD9FZNi</span><span class="si">%2F</span><span class="s1">JBmMR4yKXXyqsHVzr17isX4%2BxRXlfvyl2tNksz9atP53sEj&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;is_buy_box_winner&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                            <span class="s1">&#39;loyalty_points&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                            <span class="s1">&#39;merchant_info&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;default_shipping_country&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;A11IL2PNWYJU7H&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Amazon.it&#39;</span><span class="p">},</span>
+                            <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">69.3</span><span class="p">,</span>
+                                    <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;69,30</span><span class="se">\xa0</span><span class="s1">€&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                    <span class="s1">&#39;savings&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">30.69</span><span class="p">,</span>
+                                                <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;30,69</span><span class="se">\xa0</span><span class="s1">€ &#39;</span>
+                                                                    <span class="s1">&#39;(31%)&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;percentage&#39;</span><span class="p">:</span> <span class="mi">31</span><span class="p">,</span>
+                                                <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}},</span>
+                            <span class="s1">&#39;program_eligibility&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;is_prime_exclusive&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                                                    <span class="s1">&#39;is_prime_pantry&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+                            <span class="s1">&#39;promotions&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                            <span class="s1">&#39;saving_basis&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">99.99</span><span class="p">,</span>
+                                            <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;99,99</span><span class="se">\xa0</span><span class="s1">€&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                            <span class="s1">&#39;savings&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                            <span class="s1">&#39;violates_map&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}],</span>
+            <span class="s1">&#39;summaries&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;condition&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                        <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                        <span class="s1">&#39;sub_condition&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                        <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">},</span>
+                            <span class="s1">&#39;highest_price&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">211.7</span><span class="p">,</span>
+                                            <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;211,70</span><span class="se">\xa0</span><span class="s1">€&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                            <span class="s1">&#39;savings&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                            <span class="s1">&#39;lowest_price&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">65.3</span><span class="p">,</span>
+                                            <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;65,30</span><span class="se">\xa0</span><span class="s1">€&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                            <span class="s1">&#39;savings&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                            <span class="s1">&#39;offer_count&#39;</span><span class="p">:</span> <span class="mi">103</span><span class="p">},</span>
+                            <span class="p">{</span><span class="s1">&#39;condition&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;display_value&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                        <span class="s1">&#39;locale&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                        <span class="s1">&#39;sub_condition&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                        <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;Collectible&#39;</span><span class="p">},</span>
+                            <span class="s1">&#39;highest_price&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">149.65</span><span class="p">,</span>
+                                            <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;149,65</span><span class="se">\xa0</span><span class="s1">€&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                            <span class="s1">&#39;savings&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                            <span class="s1">&#39;lowest_price&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="mf">149.65</span><span class="p">,</span>
+                                            <span class="s1">&#39;currency&#39;</span><span class="p">:</span> <span class="s1">&#39;EUR&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;display_amount&#39;</span><span class="p">:</span> <span class="s1">&#39;149,65</span><span class="se">\xa0</span><span class="s1">€&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;price_per_unit&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                                            <span class="s1">&#39;savings&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+                            <span class="s1">&#39;offer_count&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}]},</span>
+    <span class="s1">&#39;parent_asin&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;rental_offers&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;variation_attributes&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}},</span>
+<span class="s1">&#39;http_info&#39;</span><span class="p">:</span>
+    <span class="n">HTTPHeaderDict</span><span class="p">({</span><span class="s1">&#39;Server&#39;</span><span class="p">:</span> <span class="s1">&#39;Server&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="s1">&#39;Fri, 28 Feb 2020 11:23:25 GMT&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;Content-Length&#39;</span><span class="p">:</span> <span class="s1">&#39;6002&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;Connection&#39;</span><span class="p">:</span> <span class="s1">&#39;keep-alive&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;x-amzn-RequestId&#39;</span><span class="p">:</span> <span class="s1">&#39;48adf92e-6466-4e86-8da6-24d17cbb6acb&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;Vary&#39;</span><span class="p">:</span> <span class="s1">&#39;Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;x-amz-rid&#39;</span><span class="p">:</span> <span class="s1">&#39;0BKTHM2SAXDXZY95TPKV&#39;</span><span class="p">})</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="quickstart.html"
+                        title="previous chapter">Quick start</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="advancedUsage.html"
+                        title="next chapter">Advanced Usage</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/responses.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="advancedUsage.html" title="Advanced Usage"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="quickstart.html" title="Quick start"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Amazon paapi5 1.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Alessandro Fiori.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.3.
+    </div>
+  </body>
+</html>

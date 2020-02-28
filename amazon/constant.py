@@ -1,3 +1,9 @@
+"""
+.. module:: constant
+
+
+"""
+
 from paapi5_python_sdk.get_items_resource import GetItemsResource
 from paapi5_python_sdk.search_items_resource import SearchItemsResource
 from paapi5_python_sdk.get_variations_resource import GetVariationsResource
@@ -21,6 +27,10 @@ REGIONS = {
     'UK': 'eu-west-1',
     'US': 'us-east-1'
 }
+"""
+REGIONS values
+"""
+
 DOMAINS = {
     'AU': 'com.au',
     'BR': 'com.br',
@@ -37,6 +47,10 @@ DOMAINS = {
     'UK': 'co.uk',
     'US': 'com'
 }
+"""
+DOMAINS values
+"""
+
 
 ITEM_RESOURCES = [
     GetItemsResource.BROWSENODEINFO_BROWSENODES,
@@ -94,6 +108,9 @@ ITEM_RESOURCES = [
     GetItemsResource.RENTALOFFERS_LISTINGS_DELIVERYINFO_ISPRIMEELIGIBLE,
     GetItemsResource.RENTALOFFERS_LISTINGS_DELIVERYINFO_SHIPPINGCHARGES,
     GetItemsResource.RENTALOFFERS_LISTINGS_MERCHANTINFO]
+"""
+ITEM_RESOURCES values
+"""
 
 SEARCH_RESOURCES = [
     SearchItemsResource.BROWSENODEINFO_BROWSENODES,
@@ -153,6 +170,10 @@ SEARCH_RESOURCES = [
     SearchItemsResource.RENTALOFFERS_LISTINGS_MERCHANTINFO,
     SearchItemsResource.SEARCHREFINEMENTS
 ]
+"""
+SEARCH_RESOURCES values
+"""
+
 
 VARIATION_RESOURCES = [
     GetVariationsResource.BROWSENODEINFO_BROWSENODES,
@@ -214,11 +235,17 @@ VARIATION_RESOURCES = [
     GetVariationsResource.VARIATIONSUMMARY_PRICE_LOWESTPRICE,
     GetVariationsResource.VARIATIONSUMMARY_VARIATIONDIMENSION
 ]
+"""
+VARIATION_RESOURCES values
+"""
 
 BROWSE_RESOURCES = [
     GetBrowseNodesResource.ANCESTOR,
     GetBrowseNodesResource.CHILDREN
 ]
+"""
+BROWSE_RESOURCES values
+"""
 
 CONDITIONS= [
     Condition.ANY,
@@ -227,4 +254,6 @@ CONDITIONS= [
     Condition.REFURBISHED,
     Condition.USED
 ]
-
+"""
+CONDITIONS values
+"""

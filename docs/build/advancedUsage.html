@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Advanced Usage &#8212; Amazon paapi5 1.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Documentation for the Code" href="package.html" />
+    <link rel="prev" title="Responses" href="responses.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="package.html" title="Documentation for the Code"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="responses.html" title="Responses"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Amazon paapi5 1.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="advanced-usage">
+<h1>Advanced Usage<a class="headerlink" href="#advanced-usage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="http-header-information">
+<h2>HTTP header information<a class="headerlink" href="#http-header-information" title="Permalink to this headline">¶</a></h2>
+<p>For all the functions (<code class="xref py py-func docutils literal notranslate"><span class="pre">amazon.paapi.search_items()</span></code>, <code class="docutils literal notranslate"><span class="pre">get_items</span></code>, <code class="docutils literal notranslate"><span class="pre">get_variations</span></code>, <code class="docutils literal notranslate"><span class="pre">get_browse_nodes</span></code>) you can retrieve the http header</p>
+<p>Example to retrieve the http info returned by a request:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">amazon.paapi</span> <span class="kn">import</span> <span class="n">AmazonAPI</span>
+<span class="n">amazon</span> <span class="o">=</span> <span class="n">AmazonAPI</span><span class="p">(</span><span class="n">KEY</span><span class="p">,</span> <span class="n">SECRET</span><span class="p">,</span> <span class="n">TAG</span><span class="p">,</span> <span class="n">COUNTRY</span><span class="p">)</span>
+<span class="n">products</span> <span class="o">=</span> <span class="n">amazon</span><span class="o">.</span><span class="n">search_items</span><span class="p">(</span><span class="s1">&#39;harry potter&#39;</span><span class="p">,</span> <span class="n">http_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">products</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">prices</span><span class="o">.</span><span class="n">price</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">products</span><span class="p">[</span><span class="s1">&#39;http_info&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="async-requests">
+<h2>Async requests<a class="headerlink" href="#async-requests" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to run requests with a separate thread. In the following an example of async request:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">amazon.paapi</span> <span class="kn">import</span> <span class="n">AmazonAPI</span>
+<span class="n">amazon</span> <span class="o">=</span> <span class="n">AmazonAPI</span><span class="p">(</span><span class="n">KEY</span><span class="p">,</span> <span class="n">SECRET</span><span class="p">,</span> <span class="n">TAG</span><span class="p">,</span> <span class="n">COUNTRY</span><span class="p">)</span>
+<span class="n">products</span> <span class="o">=</span> <span class="n">amazon</span><span class="o">.</span><span class="n">get_items</span><span class="p">(</span><span class="n">item_ids</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;B01N5IB20Q&#39;</span><span class="p">,</span><span class="s1">&#39;B01F9G43WU&#39;</span><span class="p">],</span> <span class="n">async_req</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">products</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;B01N5IB20Q&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">image_large</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">products</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;B01F9G43WU&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">prices</span><span class="o">.</span><span class="n">price</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Async requests do not return the http header information</p>
+</div>
+</div>
+<div class="section" id="pool-requests">
+<h2>Pool requests<a class="headerlink" href="#pool-requests" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to search items using a connetion pool using the function <code class="docutils literal notranslate"><span class="pre">search_items_pool(keywords,</span> <span class="pre">connetion_pool_max_size=10)</span></code> specify the max connection pool size with the parameter <code class="docutils literal notranslate"><span class="pre">connetion_pool_max_size</span></code>. We recommend a value equal to cpu_count * 5.
+In the folllowing an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">amazon.paapi</span> <span class="kn">import</span> <span class="n">AmazonAPI</span>
+<span class="n">amazon</span> <span class="o">=</span> <span class="n">AmazonAPI</span><span class="p">(</span><span class="n">KEY</span><span class="p">,</span> <span class="n">SECRET</span><span class="p">,</span> <span class="n">TAG</span><span class="p">,</span> <span class="n">COUNTRY</span><span class="p">)</span>
+<span class="n">products</span> <span class="o">=</span> <span class="n">amazon</span><span class="o">.</span><span class="n">search_items_pool</span><span class="p">(</span><span class="s1">&#39;harry potter&#39;</span><span class="p">,</span> <span class="n">connetion_pool_max_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">products</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">prices</span><span class="o">.</span><span class="n">price</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Advanced Usage</a><ul>
+<li><a class="reference internal" href="#http-header-information">HTTP header information</a></li>
+<li><a class="reference internal" href="#async-requests">Async requests</a></li>
+<li><a class="reference internal" href="#pool-requests">Pool requests</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="responses.html"
+                        title="previous chapter">Responses</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="package.html"
+                        title="next chapter">Documentation for the Code</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/advancedUsage.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="package.html" title="Documentation for the Code"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="responses.html" title="Responses"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Amazon paapi5 1.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Alessandro Fiori.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.3.
+    </div>
+  </body>
+</html>
