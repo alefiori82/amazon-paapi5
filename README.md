@@ -89,7 +89,7 @@ Changelog
 -------------
 
     Version 1.1.1
-        - add additional paramters to api calls
+        - add additional parameters to api calls
     Version 1.1.0
         - CacheReader and CacheWriter available for all the search functions
         - Defintion af AmazonException to get exceptions during the api calls

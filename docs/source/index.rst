@@ -22,6 +22,23 @@ Features
 - Ask for new features through the `issues <https://github.com/alefiori82/amazon-paapi5/issues>`_ section.
 
 
+Changelog
+=========
+
+    Version 1.1.1
+        - add additional parameters to api calls
+    Version 1.1.0
+        - CacheReader and CacheWriter available for all the search functions
+        - Defintion af AmazonException to get exceptions during the api calls
+        - Constants defintion
+        - AmazonProduct and AmazonBrowseNode definition
+        - Uniform data structure returned by all the api calls
+    Version 1.0.0
+        - CacheReader and CacheWriter
+        - Enable throttling
+    Version 0.1.0
+        - First release
+
 Contents
 ========
 
