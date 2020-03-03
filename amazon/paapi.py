@@ -140,27 +140,57 @@ class AmazonAPI:
 
 
     
-    def search_items(self, keywords, brand=None, condition=None, sortBy= None, browseNode=None, search_index="All", item_count=10, http_info=False, async_req=False, search_items_resource=SEARCH_RESOURCES):
+    def search_items(self, actor=None, artist=None,author=None, availability=None, brand=None, browse_node_id=None, condition=None, currency_of_preference=None, delivery_flags=None, item_count=10,item_page=1, keywords=None, languages_of_preference=None, max_price=None, merchant="All", min_price=None,  min_reviews_rating=None, min_saving_percent=None, offer_count=1, search_index="All", sort_by= None,  title=None,  http_info=False, async_req=False, search_items_resource=SEARCH_RESOURCES):
         """ 
         Search products based on keywords
         Choose resources you want from SEARCH_RESOURCES enum 
         For more details, refer: https://webservices.amazon.com/paapi5/documentation/search-items.html#resources-parameter 
 
         args:
-            *keywords (string)*
-                keywords to search products
+            *actor (string)*
+                actor to search products
+            *artist (string)*
+                artist to search products
+            *author (string)*
+                author to search products
+            *availability (string)*
+                availability to search products. Admitted values: "Available", "IncludeOutOfStock"
             *brand* (string, optional)*
                 filter the products based on the brand
+            *browse_node_id (string)*
+                search products into a specific browse node
             *condition* (enum, optional)*
                 filter the products based on the condition
-            *sortBy (string, optional)*
-                sort hte results based on the specification defined at https://webservices.amazon.com/paapi5/documentation/search-items.html#sortby-parameter
-            *browseNode (string)*
-                search products into a specific browse node
-            *search_index (string)*
-                search products based on an index. Default value "All"
+            *currency_of_preference (string)*
+                Currency of preference in which the prices information should be returned in response. By default the prices are returned in the default currency of the marketplace. Expected currency code format is the ISO 4217 currency code (i.e. USD, EUR etc.)
+            *delivery_flags (list of string)*
+                The delivery flag filters items which satisfy a certain delivery program promoted by the specific Amazon Marketplace. For example, Prime DeliveryFlag will return items having at least one offer which is Prime Eligible.
             *item_count (integer)*
                 number of products returned. Values in the range [1,10]. Default 10
+            *item_page (integer)*
+                can be used to fetch the specific set/page of items to be returned from the available Search Results. The number of items returned in a page is determined by the item_count parameter. For e.g. if the third set of 5 items (i.e. items numbered 11 to 15) are desired for a search request, you may specify
+            *keywords (string)*
+                keywords to search products
+            *languages_of_preference (list of string)*
+                Languages in order of preference in which the item information should be returned in response. By default the item information is returned in the default language of the marketplace.
+            *max_price (positive integers)*
+                Filters search results to items with at least one offer price below the specified value. Prices appear in lowest currency denomination. For example, in US marketplace, 3241 is $31.41.
+            *merchant (string)*
+                Filters search results to return items having at least one offer sold by target merchant. By default the value "All" is passed. 
+            *min_price (positive integers)*
+                Filters search results to items with at least one offer price above the specified value. Prices appear in lowest currency denomination. For example, in US marketplace, 3241 is $32.41.
+            *min_reviews_rating (positive integers less than 5)*
+                Filters search results to items with customer review ratings above specified value.
+            *min_saving_percent (integers less than 100)*
+                Filters search results to items with at least one offer having saving percentage above the specified value
+            *offer_count (integer)*
+                The number of offers desired for each item in the search results. Default: 1
+            *search_index (string)*
+                search products based on an index. Default value "All"
+            *sort_by (string, optional)*
+                sort hte results based on the specification defined at https://webservices.amazon.com/paapi5/documentation/search-items.html#sortby-parameter
+            *title (string)*
+                Title associated with the item. Title searches are subset of Keywords searches. Use a Keywords search if a Title search does not return desired items.
             *http_info (boolean)*
                 specify if http header should be returned
             *async_req (boolean)*
@@ -176,8 +206,6 @@ class AmazonAPI:
         """
 
         try:
-            if keywords == '' or None:
-                raise AmazonException("Keywords", "No keywords provided")
             if item_count > 10 or item_count < 1:
                 item_count = 10
             cache_url = self._cache_url(
@@ -187,9 +215,25 @@ class AmazonAPI:
                 'search_index':search_index,
                 'item_count':item_count,
                 'condition':condition,
-                'browse_node_id': browseNode,
+                'browse_node_id': browse_node_id,
                 'brand': brand,
-                'sort_by': sortBy  }
+                'sort_by': sort_by,
+                'actor': actor,
+                'artist': artist,
+                'author': author,
+                'availability': availability,
+                'currency_of_preference': currency_of_preference,
+                'delivery_flags': delivery_flags,
+                'item_page': item_page,
+                'languages_of_preference': languages_of_preference,
+                'max_price': max_price,
+                'merchant': merchant,
+                'min_price': min_price,
+                'min_reviews_rating': min_reviews_rating,
+                'min_saving_percent': min_saving_percent,
+                'offer_count': offer_count,
+                'title': title
+                }
             )
             
             if self.CacheReader:
@@ -200,14 +244,29 @@ class AmazonAPI:
             search_items_request = SearchItemsRequest(
                 partner_tag=self.partner_tag,
                 partner_type=PartnerType.ASSOCIATES,
-                keywords=keywords,
-                search_index=search_index,
-                item_count=item_count,
-                resources=search_items_resource,
-                condition=condition,
-                browse_node_id=browseNode,
+                actor=actor,
+                artist=artist,
+                author=author,
+                availability=availability,
                 brand=brand,
-                sort_by=sortBy
+                browse_node_id=browse_node_id,
+                condition=condition,
+                currency_of_preference=currency_of_preference,
+                delivery_flags=delivery_flags,
+                item_count=item_count,
+                item_page=item_page,
+                keywords=keywords,
+                languages_of_preference=languages_of_preference,
+                max_price=max_price,
+                merchant=merchant,
+                min_price=min_price,
+                min_reviews_rating=min_reviews_rating,
+                min_saving_percent=min_saving_percent,
+                offer_count=offer_count,
+                resources=search_items_resource,
+                search_index=search_index,
+                sort_by=sort_by,
+                title=title
             )
             
             
@@ -283,27 +342,57 @@ class AmazonAPI:
 
 
     
-    def search_items_pool(self, keywords, brand=None, condition=None, sortBy=None, browseNode=None, search_index="All", item_count=10, search_items_resource=SEARCH_RESOURCES ,connetion_pool_max_size=12):
+    def search_items_pool(self, actor=None, artist=None,author=None, availability=None, brand=None, browse_node_id=None, condition=None, currency_of_preference=None, delivery_flags=None, item_count=10,item_page=1, keywords=None, languages_of_preference=None, max_price=None, merchant="All", min_price=None,  min_reviews_rating=None, min_saving_percent=None, offer_count=1, search_index="All", sort_by= None,  title=None, search_items_resource=SEARCH_RESOURCES ,connetion_pool_max_size=12):
         """ 
         Search products based on keywords. You can specify max connection pool size here. We recommend a value equal to cpu_count * 5.
         Choose resources you want from SEARCH_RESOURCES enum.
         For more details, refer: https://webservices.amazon.com/paapi5/documentation/search-items.html#resources-parameter 
 
         args:
-            *keywords (string)*
-                keywords to search products
+            *actor (string)*
+                actor to search products
+            *artist (string)*
+                artist to search products
+            *author (string)*
+                author to search products
+            *availability (string)*
+                availability to search products. Admitted values: "Available", "IncludeOutOfStock"
             *brand* (string, optional)*
                 filter the products based on the brand
+            *browse_node_id (string)*
+                search products into a specific browse node
             *condition* (enum, optional)*
                 filter the products based on the condition
-            *sortBy (string, optional)*
-                sort hte results based on the specification defined at https://webservices.amazon.com/paapi5/documentation/search-items.html#sortby-parameter
-            *browseNode (string)*
-                search products into a specific browse node
-            *search_index (string)*
-                search products based on an index. Default value "All"
+            *currency_of_preference (string)*
+                Currency of preference in which the prices information should be returned in response. By default the prices are returned in the default currency of the marketplace. Expected currency code format is the ISO 4217 currency code (i.e. USD, EUR etc.)
+            *delivery_flags (list of string)*
+                The delivery flag filters items which satisfy a certain delivery program promoted by the specific Amazon Marketplace. For example, Prime DeliveryFlag will return items having at least one offer which is Prime Eligible.
             *item_count (integer)*
                 number of products returned. Values in the range [1,10]. Default 10
+            *item_page (integer)*
+                can be used to fetch the specific set/page of items to be returned from the available Search Results. The number of items returned in a page is determined by the item_count parameter. For e.g. if the third set of 5 items (i.e. items numbered 11 to 15) are desired for a search request, you may specify
+            *keywords (string)*
+                keywords to search products
+            *languages_of_preference (list of string)*
+                Languages in order of preference in which the item information should be returned in response. By default the item information is returned in the default language of the marketplace.
+            *max_price (positive integers)*
+                Filters search results to items with at least one offer price below the specified value. Prices appear in lowest currency denomination. For example, in US marketplace, 3241 is $31.41.
+            *merchant (string)*
+                Filters search results to return items having at least one offer sold by target merchant. By default the value "All" is passed. 
+            *min_price (positive integers)*
+                Filters search results to items with at least one offer price above the specified value. Prices appear in lowest currency denomination. For example, in US marketplace, 3241 is $32.41.
+            *min_reviews_rating (positive integers less than 5)*
+                Filters search results to items with customer review ratings above specified value.
+            *min_saving_percent (integers less than 100)*
+                Filters search results to items with at least one offer having saving percentage above the specified value
+            *offer_count (integer)*
+                The number of offers desired for each item in the search results. Default: 1
+            *search_index (string)*
+                search products based on an index. Default value "All"
+            *sort_by (string, optional)*
+                sort hte results based on the specification defined at https://webservices.amazon.com/paapi5/documentation/search-items.html#sortby-parameter
+            *title (string)*
+                Title associated with the item. Title searches are subset of Keywords searches. Use a Keywords search if a Title search does not return desired items.
             *search_items_resource (list)*
                 For more details, refer: https://webservices.amazon.com/paapi5/documentation/search-items.html#resources-parameter. By deafult all possible resources are requested
             *connetion_pool_max_size (integer)*
@@ -343,9 +432,25 @@ class AmazonAPI:
                 'search_index':search_index,
                 'item_count':item_count,
                 'condition':condition,
-                'browse_node_id': browseNode,
+                'browse_node_id': browse_node_id,
                 'brand': brand,
-                'sort_by': sortBy }
+                'sort_by': sort_by,
+                'actor': actor,
+                'artist': artist,
+                'author': author,
+                'availability': availability,
+                'currency_of_preference': currency_of_preference,
+                'delivery_flags': delivery_flags,
+                'item_page': item_page,
+                'languages_of_preference': languages_of_preference,
+                'max_price': max_price,
+                'merchant': merchant,
+                'min_price': min_price,
+                'min_reviews_rating': min_reviews_rating,
+                'min_saving_percent': min_saving_percent,
+                'offer_count': offer_count,
+                'title': title
+                }
             )
             
             if self.CacheReader:
@@ -356,14 +461,29 @@ class AmazonAPI:
             search_items_request = SearchItemsRequest(
                 partner_tag=self.partner_tag,
                 partner_type=PartnerType.ASSOCIATES,
-                keywords=keywords,
-                search_index=search_index,
-                item_count=item_count,
-                resources=search_items_resource,
-                condition=condition,
-                browse_node_id=browseNode,
+                actor=actor,
+                artist=artist,
+                author=author,
+                availability=availability,
                 brand=brand,
-                sort_by=sortBy
+                browse_node_id=browse_node_id,
+                condition=condition,
+                currency_of_preference=currency_of_preference,
+                delivery_flags=delivery_flags,
+                item_count=item_count,
+                item_page=item_page,
+                keywords=keywords,
+                languages_of_preference=languages_of_preference,
+                max_price=max_price,
+                merchant=merchant,
+                min_price=min_price,
+                min_reviews_rating=min_reviews_rating,
+                min_saving_percent=min_saving_percent,
+                offer_count=offer_count,
+                resources=search_items_resource,
+                search_index=search_index,
+                sort_by=sort_by,
+                title=title
             )
             
 
@@ -416,7 +536,7 @@ class AmazonAPI:
 
     """ Choose resources you want from GetVariationsResource enum """
     """ For more details, refer: https://webservices.amazon.com/paapi5/documentation/get-variations.html#resources-parameter """
-    def get_variations(self, asin, condition=None, languages_of_preference=None, currency_of_preference=None, async_req=False, http_info=False, get_variations_resources=VARIATION_RESOURCES):
+    def get_variations(self, asin, condition=None, currency_of_preference=None, languages_of_preference=None, merchant="All", offer_count=1, variation_count=10, variation_page=1, async_req=False, http_info=False, get_variations_resources=VARIATION_RESOURCES):
         """ 
         Get product variation using the asin of orginal product.
         Choose resources you want from VARIATION_RESOURCES enum.
@@ -427,10 +547,18 @@ class AmazonAPI:
                 asin of the product for which we want the variations
             *condition* (enum, optional)*
                 filter the products based on the condition
-            *languages_of_preference (list of string)*
-                specify the language of returned results
             *currency_of_preference (string)*
                 specify the currency of returned results
+            *languages_of_preference (list of string)*
+                specify the language of returned results
+            *merchant (string)*
+                Filters search results to return items having at least one offer sold by target merchant. By default the value "All" is passed. 
+            *offer_count (integer)*
+                The number of offers desired for each item in the search results. Default: 1
+            *variation_count (integer)*
+                Number of variations to be returned per page. Default: 10
+            *variation_page (integer)*
+                Page number of variations returned by get_variations. Default: 1 
             *http_info (boolean)*
                 specify if http header should be returned
             *async_req (boolean)*
@@ -450,9 +578,13 @@ class AmazonAPI:
                 {'partner_tag':self.partner_tag,
                 'partner_type':PartnerType.ASSOCIATES,
                 'asin':asin,
-                'languages_of_preference':languages_of_preference,
                 'condition': condition,
-                'currency_of_preference': currency_of_preference
+                'currency_of_preference': currency_of_preference,
+                'languages_of_preference':languages_of_preference,
+                'merchant':merchant,
+                'offer_count': offer_count,
+                'variation_count': variation_count,
+                'variation_page': variation_page
                 }
             )
             
@@ -465,11 +597,15 @@ class AmazonAPI:
                 partner_tag=self.partner_tag,
                 partner_type=PartnerType.ASSOCIATES,
                 marketplace=self.marketplace,
-                languages_of_preference=languages_of_preference,
                 asin=asin,
-                resources=get_variations_resources,
                 condition=condition,
-                currency_of_preference=currency_of_preference
+                currency_of_preference=currency_of_preference,
+                languages_of_preference=languages_of_preference,
+                merchant=merchant,
+                offer_count=offer_count,
+                variation_count=variation_count,
+                variation_page=variation_page,
+                resources=get_variations_resources
             )
             
         except ValueError as exception:
@@ -545,7 +681,7 @@ class AmazonAPI:
 
     """ Choose resources you want from GetItemsResource enum """
     """ For more details, refer: https://webservices.amazon.com/paapi5/documentation/get-items.html#resources-parameter """
-    def get_items(self, item_ids=[], currency_of_preference=None, condition=None, http_info=False, async_req=False, get_items_resource=ITEM_RESOURCES):
+    def get_items(self, item_ids=[], condition=None, currency_of_preference=None, item_id_type="ASIN",languages_of_preference=None, merchant="All", offer_count=1, http_info=False, async_req=False, get_items_resource=ITEM_RESOURCES):
         """ 
         Get items' information.
         Choose resources you want from ITEM_RESOURCES enum 
@@ -554,10 +690,18 @@ class AmazonAPI:
         args:
             *item_ids (list of string)*
                 list of asin of the products of interest
-            *currency_of_preference (string)*
-                specify the currency of returned results
             *condition* (enum, optional)*
                 filter the products based on the condition
+            *currency_of_preference (string)*
+                specify the currency of returned results
+            *item_id_type (string)*
+                Type of item identifier used to look up an item. Default: ASIN
+            *languages_of_preference (list of string)*
+                Languages in order of preference in which the item information should be returned in response. By default the item information is returned in the default language of the marketplace
+            *merchant (string)*
+                Filters search results to return items having at least one offer sold by target merchant. By default the value "All" is passed. 
+            *offer_count (integer)*
+                The number of offers desired for each item in the search results. Default: 1
             *http_info (boolean)*
                 specify if http header should be returned
             *async_req (boolean)*
@@ -581,10 +725,15 @@ class AmazonAPI:
             cache_url = self._cache_url(
                 {'partner_tag':self.partner_tag,
                 'partner_type':PartnerType.ASSOCIATES,
-                'item_ids':item_ids,
+                'item_ids':item_ids,    
                 'condition':condition,
-                'currency_of_preference': currency_of_preference  }
-                )
+                'currency_of_preference': currency_of_preference,
+                'item_id_type': item_id_type,
+                'languages_of_preference': languages_of_preference,
+                'merchant': merchant,
+                'offer_count': offer_count
+                }
+            )
             
             if self.CacheReader:
                 cached_response_text = self.CacheReader(cache_url)
@@ -595,10 +744,14 @@ class AmazonAPI:
                 partner_tag=self.partner_tag,
                 partner_type=PartnerType.ASSOCIATES,
                 marketplace=self.marketplace,
-                condition=condition,
                 item_ids=item_ids,
-                resources=get_items_resource,
-                currency_of_preference=currency_of_preference
+                condition=condition,
+                currency_of_preference=currency_of_preference,
+                item_id_type=item_id_type,
+                languages_of_preference=languages_of_preference,
+                merchant=merchant,
+                offer_count=offer_count,
+                resources=get_items_resource
             )
             
 
@@ -681,7 +834,7 @@ class AmazonAPI:
 
     """ Choose resources you want from GetBrowseNodesResource enum """
     """ For more details, refer: https://webservices.amazon.com/paapi5/documentation/getbrowsenodes.html#resources-parameter """
-    def get_browse_nodes(self, browse_node_ids=[], http_info=False, async_req=False, languages_of_preference = None, get_browse_node_resources=BROWSE_RESOURCES):
+    def get_browse_nodes(self, browse_node_ids=[], languages_of_preference = None, http_info=False, async_req=False, get_browse_node_resources=BROWSE_RESOURCES):
         """" 
         Get browse nodes' information.
         Choose resources you want from BROWSE_RESOURCES enum 
@@ -690,12 +843,13 @@ class AmazonAPI:
         args:
             *browse_node_ids (list of string)*
                 list of browse node ids
+            *languages_of_preference (list of string)*
+                specify the language of returned results
             *http_info (boolean)*
                 specify if http header should be returned
             *async_req (boolean)*
                 specify if a thread should be created to run the request
-            *languages_of_preference (list of string)*
-                specify the language of returned results
+            
             *get_browse_node_resources (list)*
                 For more details, refer: https://webservices.amazon.com/paapi5/documentation/getbrowsenodes.html#request-parameters. By deafult all possible resources are requested
             

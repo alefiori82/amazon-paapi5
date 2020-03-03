@@ -6,7 +6,7 @@ In the following we report some example of response returned by the methods
 
 Example of response returned by *search_items* or *get_variations* functions with http info::
 
-    p = amazon.search_items('harry potter', http_info=True, item_count=2)
+    p = amazon.search_items(keywords='harry potter', http_info=True, item_count=2)
     
     {'data': [{'asin': 'B07G3S3M9J',
         'browse_node_info': {'browse_nodes': [{'ancestor': {'ancestor': {'ancestor': None,

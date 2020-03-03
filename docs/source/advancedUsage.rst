@@ -12,7 +12,7 @@ Example to retrieve the http info returned by a request::
 
     from amazon.paapi import AmazonAPI
     amazon = AmazonAPI(KEY, SECRET, TAG, COUNTRY)
-    products = amazon.search_items('harry potter', http_info=True)
+    products = amazon.search_items(keywords='harry potter', http_info=True)
     print(products['data'][1].prices.price)
     print (products['http_info'])
 
@@ -42,6 +42,6 @@ In the folllowing an example::
 
     from amazon.paapi import AmazonAPI
     amazon = AmazonAPI(KEY, SECRET, TAG, COUNTRY)
-    products = amazon.search_items_pool('harry potter', connetion_pool_max_size=10)
+    products = amazon.search_items_pool(keywords='harry potter', connetion_pool_max_size=10)
     print(products['data'][1].prices.price)
 

@@ -53,7 +53,7 @@
 <p>Search items:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">amazon.paapi</span> <span class="kn">import</span> <span class="n">AmazonAPI</span>
 <span class="n">amazon</span> <span class="o">=</span> <span class="n">AmazonAPI</span><span class="p">(</span><span class="n">KEY</span><span class="p">,</span> <span class="n">SECRET</span><span class="p">,</span> <span class="n">TAG</span><span class="p">,</span> <span class="n">COUNTRY</span><span class="p">)</span>
-<span class="n">products</span> <span class="o">=</span> <span class="n">amazon</span><span class="o">.</span><span class="n">search_items</span><span class="p">(</span><span class="s1">&#39;harry potter&#39;</span><span class="p">)</span>
+<span class="n">products</span> <span class="o">=</span> <span class="n">amazon</span><span class="o">.</span><span class="n">search_items</span><span class="p">(</span><span class="n">keywords</span><span class="o">=</span><span class="s1">&#39;harry potter&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">product</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">image_large</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">product</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">prices</span><span class="o">.</span><span class="n">price</span><span class="p">)</span>
 </pre></div>
@@ -93,7 +93,7 @@
     <span class="k">return</span> <span class="kc">None</span>
 
 <span class="n">amazon</span> <span class="o">=</span> <span class="n">AmazonAPI</span><span class="p">(</span><span class="n">KEY</span><span class="p">,</span> <span class="n">SECRET</span><span class="p">,</span> <span class="n">TAG</span><span class="p">,</span> <span class="n">COUNTRY</span><span class="p">,</span> <span class="n">CacheReader</span><span class="o">=</span><span class="n">custom_retrieval_function</span><span class="p">,</span> <span class="n">CacheWriter</span><span class="o">=</span><span class="n">custom_save_function</span><span class="p">)</span>
-<span class="n">products</span> <span class="o">=</span> <span class="n">amazon</span><span class="o">.</span><span class="n">search_items</span><span class="p">(</span><span class="s1">&#39;harry potter&#39;</span><span class="p">)</span>
+<span class="n">products</span> <span class="o">=</span> <span class="n">amazon</span><span class="o">.</span><span class="n">search_items</span><span class="p">(</span><span class="n">keywords</span><span class="o">=</span><span class="s1">&#39;harry potter&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

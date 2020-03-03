@@ -17,7 +17,7 @@ Search items::
 
     from amazon.paapi import AmazonAPI
     amazon = AmazonAPI(KEY, SECRET, TAG, COUNTRY)
-    products = amazon.search_items('harry potter')
+    products = amazon.search_items(keywords='harry potter')
     print(product['data'][0].image_large)
     print(product['data'][1].prices.price)
 
@@ -58,6 +58,6 @@ Use cache reader and writer::
         return None
     
     amazon = AmazonAPI(KEY, SECRET, TAG, COUNTRY, CacheReader=custom_retrieval_function, CacheWriter=custom_save_function) 
-    products = amazon.search_items('harry potter')
+    products = amazon.search_items(keywords='harry potter')
 
 
