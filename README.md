@@ -40,7 +40,7 @@ Search items::
 
     from amazon.paapi import AmazonAPI
     amazon = AmazonAPI(KEY, SECRET, TAG, COUNTRY)
-    products = amazon.search_items('harry potter')
+    products = amazon.search_items(keywords='harry potter')
     print(product['data'][0].image_large)
     print(product['data'][1].prices.price)
 
@@ -81,13 +81,15 @@ Use cache reader and writer::
         return None
     
     amazon = AmazonAPI(KEY, SECRET, TAG, COUNTRY, CacheReader=custom_retrieval_function, CacheWriter=custom_save_function) 
-    products = amazon.search_items('harry potter')
+    products = amazon.search_items(keywords='harry potter')
 
 
 
 Changelog
 -------------
 
+    Version 1.1.1
+        - add additional paramters to api calls
     Version 1.1.0
         - CacheReader and CacheWriter available for all the search functions
         - Defintion af AmazonException to get exceptions during the api calls
