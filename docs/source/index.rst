@@ -25,6 +25,8 @@ Features
 Changelog
 =========
 
+    Version 1.1.2
+        - License MIT
     Version 1.1.1
         - add additional parameters to api calls
     Version 1.1.0
