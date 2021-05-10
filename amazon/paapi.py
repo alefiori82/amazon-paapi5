@@ -92,7 +92,7 @@ class AmazonAPI:
     
     
     """
-    def __init__(self, access_key, secret_key, partner_tag, country='US', throttling=0.9, CacheReader=None, CacheWriter=None):
+    def __init__(self, access_key=None, secret_key=None, partner_tag=None, country='US', throttling=0.9, CacheReader=None, CacheWriter=None):
         """
             init AmazonApi. It is necessary to specify *access_key, secret_key, partner_tag, country* parameters
             By default the throttling parameter is set to 0.9. Increse or descrease this number to manage the time among different calls
@@ -114,9 +114,9 @@ class AmazonAPI:
                     function to write results into the cache 
 
         """
-        self.access_key = access_key
-        self.secret_key = secret_key
-        self.partner_tag = partner_tag
+        self.access_key = access_key or os.environ.get('AWS_ACCESS_KEY')
+        self.secret_key = secret_key or os.environ.get('AWS_SECRET_KEY')
+        self.partner_tag = partner_tag or os.environ.get('AWS_ASSOCIATE_TAG')
         self.throttling = throttling
         self.country = country
         self.host = 'webservices.amazon.' + DOMAINS[country]
