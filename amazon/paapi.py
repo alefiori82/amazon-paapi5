@@ -19,7 +19,7 @@ from paapi5_python_sdk.get_browse_nodes_request import GetBrowseNodesRequest
 
 
 
-import time, json, pickle, pprint
+import time, json, pickle, pprint, os
 from urllib.parse import quote as urllib_quote
 from .entities import AmazonProduct, AmazonBrowseNode
 from .constant import *
