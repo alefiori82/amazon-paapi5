@@ -19,7 +19,7 @@ from paapi5_python_sdk.get_browse_nodes_request import GetBrowseNodesRequest
 
 
 
-import time, json, pickle, pprint
+import builtins, copyreg, io, time, json, pickle, pprint
 from urllib.parse import quote as urllib_quote
 from .entities import AmazonProduct, AmazonBrowseNode
 from .constant import *
@@ -34,6 +34,38 @@ def _quote_query(query):
         k, urllib_quote(
             str(query[k]).encode('utf-8'), safe='~'))
             for k in sorted(query))
+
+
+_SAFE_PICKLE_BUILTINS = {
+    'list', 'dict', 'tuple', 'set', 'frozenset', 'str', 'bytes', 'bytearray',
+    'int', 'float', 'complex', 'bool', 'NoneType', 'object',
+}
+
+
+class _RestrictedUnpickler(pickle.Unpickler):
+    """
+    Only allows unpickling amazon/paapi5_python_sdk model classes and plain
+    Python containers/scalars. Cache entries are always written by this same
+    module (pickle.dumps of AmazonProduct/AmazonBrowseNode), so the pickle
+    format itself is unchanged and old cache entries keep working; this only
+    closes the arbitrary-code-execution hole a malicious/compromised
+    CacheReader could otherwise use to smuggle a hostile pickle payload.
+    """
+    def find_class(self, module, name):
+        if module == 'builtins' and name in _SAFE_PICKLE_BUILTINS:
+            return getattr(builtins, name)
+        if module == 'copyreg':
+            return getattr(copyreg, name)
+        if module == 'amazon' or module.startswith('amazon.') \
+                or module == 'paapi5_python_sdk' or module.startswith('paapi5_python_sdk.'):
+            return super().find_class(module, name)
+        raise pickle.UnpicklingError(
+            "Refusing to unpickle %s.%s: not in the cache allowlist" % (module, name))
+
+
+def _safe_loads(data):
+    """Deserialize a cached pickle payload through _RestrictedUnpickler."""
+    return _RestrictedUnpickler(io.BytesIO(data)).load()
 
 def parse_response_browse_node(browse_nodes_response_list):
     """
@@ -239,7 +271,7 @@ class AmazonAPI:
             if self.CacheReader:
                 cached_response_text = self.CacheReader(cache_url)
                 if cached_response_text is not None:
-                    return {'data': pickle.loads(cached_response_text['data']), 'http_info': pickle.loads(cached_response_text['http_info'])}
+                    return {'data': _safe_loads(cached_response_text['data']), 'http_info': _safe_loads(cached_response_text['http_info'])}
 
             search_items_request = SearchItemsRequest(
                 partner_tag=self.partner_tag,
@@ -456,7 +488,7 @@ class AmazonAPI:
             if self.CacheReader:
                 cached_response_text = self.CacheReader(cache_url)
                 if cached_response_text is not None:
-                    return {'data': pickle.loads(cached_response_text['data']), 'http_info': pickle.loads(cached_response_text['http_info'])}
+                    return {'data': _safe_loads(cached_response_text['data']), 'http_info': _safe_loads(cached_response_text['http_info'])}
 
             search_items_request = SearchItemsRequest(
                 partner_tag=self.partner_tag,
@@ -591,7 +623,7 @@ class AmazonAPI:
             if self.CacheReader:
                 cached_response_text = self.CacheReader(cache_url)
                 if cached_response_text is not None:
-                    return {'data': pickle.loads(cached_response_text['data']), 'http_info': pickle.loads(cached_response_text['http_info'])}
+                    return {'data': _safe_loads(cached_response_text['data']), 'http_info': _safe_loads(cached_response_text['http_info'])}
 
             get_variations_request = GetVariationsRequest(
                 partner_tag=self.partner_tag,
@@ -738,7 +770,7 @@ class AmazonAPI:
             if self.CacheReader:
                 cached_response_text = self.CacheReader(cache_url)
                 if cached_response_text is not None:
-                    return {'data': parse_response_item( pickle.loads(cached_response_text['data']) ), 'http_info': pickle.loads(cached_response_text['http_info'])}
+                    return {'data': parse_response_item( _safe_loads(cached_response_text['data']) ), 'http_info': _safe_loads(cached_response_text['http_info'])}
 
             get_items_request = GetItemsRequest(
                 partner_tag=self.partner_tag,
@@ -876,7 +908,7 @@ class AmazonAPI:
             if self.CacheReader:
                 cached_response_text = self.CacheReader(cache_url)
                 if cached_response_text is not None:
-                    return {'data': parse_response_browse_node (pickle.loads(cached_response_text['data']) ), 'http_info': pickle.loads(cached_response_text['http_info'])}
+                    return {'data': parse_response_browse_node (_safe_loads(cached_response_text['data']) ), 'http_info': _safe_loads(cached_response_text['http_info'])}
 
             get_browse_node_request = GetBrowseNodesRequest(
                 partner_tag=self.partner_tag,
