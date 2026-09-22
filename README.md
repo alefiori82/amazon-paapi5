@@ -88,6 +88,10 @@ Use cache reader and writer::
 Changelog
 -------------
 
+    Version 1.1.3
+        - Updated dependencies to fix known vulnerabilities, dropped unused mkdocs dev dependency
+        - Hardened response cache deserialization against unsafe pickle payloads (backward compatible)
+        - Modernized build/publish GitHub Actions workflows
     Version 1.1.2
         - License MIT
     Version 1.1.1
