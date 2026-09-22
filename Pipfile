@@ -9,7 +9,6 @@ verify_ssl = true
 ipython = "*"
 amightygirl-paapi5-python-sdk = "*"
 sphinx = "*"
-mkdocs = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.13"
